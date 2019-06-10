@@ -21,13 +21,18 @@ else
         mipmap_map="./harmonize_step"
         use_mipmap=true
     else
-        if [ $1 = "export" ]; then
-            mipmap_map="./export_step"
-            use_mipmap=false
-            echo "not using mipmap"
+        if [ $1 = "preprocess" ]; then
+            mipmap_map="./preprocess_step"
+            use_mipmap=true
         else
-            echo "Not a EHR DataFactory step. Exiting..."
-            exit 1
+            if [ $1 = "export" ]; then
+                mipmap_map="./export_step"
+                use_mipmap=false
+                echo "not using mipmap"
+            else
+                echo "Not a EHR DataFactory step. Exiting..."
+                exit 1
+            fi
         fi
     fi
 fi
@@ -42,7 +47,7 @@ export mipmap_source
 export mipmap_pgproperties
 export mipmap_target
 
-if [ "$use_mimap" ]; then
+if [ "$use_mipmap" ]; then
     echo "Performing EHR DataFactory $1 step"
     echo "Using $mipmap_map folder"
     if [ "$(docker ps -a -f name=^mipmap$)" ]; then
