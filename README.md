@@ -1,5 +1,7 @@
 # ehr-mapping-design-template
 
+[![AUEB](https://img.shields.io/badge/AUEB-RC-red.svg)](http://rc.aueb.gr/el/static/home) [![HBP-SP8](https://img.shields.io/badge/HBP-SP8-magenta.svg)](https://www.humanbrainproject.eu/en/follow-hbp/news/category/sp8-medical-informatics-platform/)
+
 This is a EHR mapping design template containing the folders and scripts needed to configure and run the EHR DataFactory pipeline on a machine.
 
 ## Requirements
@@ -44,13 +46,20 @@ sh build_postgres.sh
 
 ## Configuration
 
-1. Copy the mapping xml file from the Design folder to the *capture_step* folder (for **capture step**) or *harmonize_step* (for **harmonization step**) and rename the mapping xml file by adding the extension “.tmpl”
+1. Update the *preprocess_step* files (for **preprocess** and **capture** step)
+    - EncounterMapping.properties
+    - PatientMapping.properties
+    - txt files for unpivoting process
 
-2. Open the xml file template file with an editor and find replace (for **capture step**):
+2. For **capture step** Copy the mapping xml file from the Design folder to the *capture_step* folder and rename the mapping xml file by adding the extension “.tmpl”
 
-- The TARGET database name - “I2B2.” -> “{{ .Env.i2b2_db_name }}.” (Note there is a “.” at end of each string) 
+Open the xml file template file with an editor and find replace:
+
+- The TARGET database name - “i2b2_capture.” -> “{{ .Env.i2b2_db_name }}.” (Note there is a “.” at end of each string)
+
 - the following xml section
-```
+
+```xml
     <type>Relational</type>
    <relational>
      <driver>org.postgresql.Driver</driver>
@@ -59,9 +68,10 @@ sh build_postgres.sh
      <password>1234</password>
    </relational>
 ```
+
 with this one:
 
-```
+```xml
 <type>Relational</type>
    <relational>
      <driver>org.postgresql.Driver</driver>
@@ -70,10 +80,62 @@ with this one:
      <password>{{ default .Env.i2b2_db_password "postgres" }}</password>
    </relational>
 ```
-3. Update the *preprocess_step* files (for **preprocess** and **capture** step)
-    - EncounterMapping.properties
-    - PatientMapping.properties
-    - txt files for unpivoting process
+3. For **harmonization step** Copy the mapping xml file from the Design folder to the *harmonize_step* folder and rename the mapping xml file by adding the extension “.tmpl”
+
+Open the xml file template file with an editor and find replace:
+
+- For the SOURCE database find and replace - “i2b2_capture.” to “{{ .Env.i2b2_db_name }}.” (Note there is a “.” at end of each string)
+
+- Also in the SOURCE section, replace the following xml part:
+
+```xml
+    <type>Relational</type>
+   <relational>
+     <driver>org.postgresql.Driver</driver>
+     <uri>jdbc:postgresql://localhost:45432/i2b2_capture</uri>
+     <login>postgres</login>
+     <password>1234</password>
+   </relational>
+```
+
+with this one:
+
+```xml
+<type>Relational</type>
+   <relational>
+     <driver>org.postgresql.Driver</driver>
+     <uri>jdbc:postgresql://{{ .Env.i2b2_db_host }}:{{ default .Env.i2b2_db_port "5432" }}/{{ .Env.i2b2_db_name }}</uri>
+     <login>{{ default .Env.i2b2_db_user "postgres" }}</login>
+     <password>{{ default .Env.i2b2_db_password "postgres" }}</password>
+   </relational>
+```
+
+- For the TARGET database find and replace - “i2b2_harmonized.” to “{{ .Env.i2b2_db_harmonized_name }}.” (Note there is a “.” at end of each string)
+
+- Also in the TARGET section, replace the following xml part:
+
+```xml
+    <type>Relational</type>
+   <relational>
+     <driver>org.postgresql.Driver</driver>
+     <uri>jdbc:postgresql://localhost:45432/i2b2_harmonized</uri>
+     <login>postgres</login>
+     <password>1234</password>
+   </relational>
+```
+
+with this one:
+
+```xml
+<type>Relational</type>
+   <relational>
+     <driver>org.postgresql.Driver</driver>
+     <uri>jdbc:postgresql://{{ .Env.i2b2_db_harmonized_host }}:{{ default .Env.i2b2_db_harmonized_port "5432" }}/{{ .Env.i2b2_db_harmonized_name }}</uri>
+     <login>{{ default .Env.i2b2_db__harmonized_user "postgres" }}</login>
+     <password>{{ default .Env.i2b2_db_harmonized_password "postgres" }}</password>
+   </relational>
+
+```
 
 ### Running EHR pipeline
 
@@ -89,6 +151,7 @@ Auxiliary files are created in the same folder where the hospital csv files are 
 
 #### Step_2 - capture step
 
+Caution! Auxilary files must be created first by the preprocessing step.
 In DataFactory folder run:
 
 ```shell
