@@ -137,9 +137,9 @@ with this one:
 
 ```
 
-### Running EHR pipeline
+## Running EHR pipeline
 
-#### Step_1 - preprocess step
+### Step_1 - preprocess step
 
 In DataFactory folder run:
 
@@ -149,7 +149,7 @@ sh ingestdata.sh preprocess
 
 Auxiliary files are created in the same folder where the hospital csv files are located.
 
-#### Step_2 - capture step
+### Step_2 - capture step
 
 Caution! Auxilary files must be created first by the preprocessing step.
 In DataFactory folder run:
@@ -158,7 +158,7 @@ In DataFactory folder run:
 sh ingestdata.sh capture
 ```
 
-#### Step_3 - harmonization step
+### Step_3 - harmonization step
 
 In DataFactory folder run:
 
@@ -166,7 +166,7 @@ In DataFactory folder run:
 sh ingestdata.sh harmonize
 ```
 
-#### Step_4 - local data flattening step
+### Step_4 - local data flattening step
 
 In DataFactory folder run:
 
