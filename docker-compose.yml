@@ -57,23 +57,15 @@ services:
       - "${mipmap_map}:/opt/map:rw"
       - "${mipmap_source}:/opt/source:rw"
       - "${mipmap_pgproperties}:/opt/postgresdb.properties:rw"
-      - "${mipmap_target}:/opt/target:rw"
-    environment:
-      - mipmap_db_host=test_postgres
-      - mipmap_db_port=5432
-      - mipmap_db_name=mipmap
-      - mipmap_db_user=postgres
-      - mipmap_db_password=1234
+    environment:   
       - i2b2_db_host=test_postgres
       - i2b2_db_port=5432
       - i2b2_db_name=i2b2_capture
       - i2b2_db_user=postgres
       - i2b2_db_password=1234
-      - i2b2_db_harmonized_host=test_postgres
-      - i2b2_db_harmonized_port=5432
       - i2b2_db_harmonized_name=i2b2_harmonized
-      - i2b2_db_harmonized_user=postgres
-      - i2b2_db_harmonized_password=1234
+      - mipmap_db_name=mipmap
+
     external_links:
       - "demo_postgres:test_postgres"
     command: ['/opt/map/run.sh']

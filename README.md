@@ -51,91 +51,25 @@ sh build_postgres.sh
     - PatientMapping.properties
     - txt files for unpivoting process
 
-2. For **capture step** Copy the mapping xml file from the Design folder to the *capture_step* folder and rename the mapping xml file by adding the extension “.tmpl”
+2. For **capture step**
+    - save the mapping task file in the main folder with the name `map.xml`
+    - run:
 
-Open the xml file template file with an editor and find replace:
+    ```shell
+    sh templator.sh capture
+    ````
 
-- The TARGET database name - “i2b2_capture.” -> “{{ .Env.i2b2_db_name }}.” (Note there is a “.” at end of each string)
+  The last script creates a template xml `map.xml.tmpl` file in the folder capture_step.
 
-- the following xml section
+3. For **harmonization step**
+    - save the mapping task file in the main folder with the name `mapHarmonize.xml`
+    - run:
 
-```xml
-    <type>Relational</type>
-   <relational>
-     <driver>org.postgresql.Driver</driver>
-     <uri>jdbc:postgresql://localhost:45432/i2b2_capture</uri>
-     <login>postgres</login>
-     <password>1234</password>
-   </relational>
-```
+    ```shell
+    sh templator.sh harmonize
+    ````
 
-with this one:
-
-```xml
-<type>Relational</type>
-   <relational>
-     <driver>org.postgresql.Driver</driver>
-     <uri>jdbc:postgresql://{{ .Env.i2b2_db_host }}:{{ default .Env.i2b2_db_port "5432" }}/{{ .Env.i2b2_db_name }}</uri>
-     <login>{{ default .Env.i2b2_db_user "postgres" }}</login>
-     <password>{{ default .Env.i2b2_db_password "postgres" }}</password>
-   </relational>
-```
-3. For **harmonization step** Copy the mapping xml file from the Design folder to the *harmonize_step* folder and rename the mapping xml file by adding the extension “.tmpl”
-
-Open the xml file template file with an editor and find replace:
-
-- For the SOURCE database find and replace - “i2b2_capture.” to “{{ .Env.i2b2_db_name }}.” (Note there is a “.” at end of each string)
-
-- Also in the SOURCE section, replace the following xml part:
-
-```xml
-    <type>Relational</type>
-   <relational>
-     <driver>org.postgresql.Driver</driver>
-     <uri>jdbc:postgresql://localhost:45432/i2b2_capture</uri>
-     <login>postgres</login>
-     <password>1234</password>
-   </relational>
-```
-
-with this one:
-
-```xml
-<type>Relational</type>
-   <relational>
-     <driver>org.postgresql.Driver</driver>
-     <uri>jdbc:postgresql://{{ .Env.i2b2_db_host }}:{{ default .Env.i2b2_db_port "5432" }}/{{ .Env.i2b2_db_name }}</uri>
-     <login>{{ default .Env.i2b2_db_user "postgres" }}</login>
-     <password>{{ default .Env.i2b2_db_password "postgres" }}</password>
-   </relational>
-```
-
-- For the TARGET database find and replace - “i2b2_harmonized.” to “{{ .Env.i2b2_db_harmonized_name }}.” (Note there is a “.” at end of each string)
-
-- Also in the TARGET section, replace the following xml part:
-
-```xml
-    <type>Relational</type>
-   <relational>
-     <driver>org.postgresql.Driver</driver>
-     <uri>jdbc:postgresql://localhost:45432/i2b2_harmonized</uri>
-     <login>postgres</login>
-     <password>1234</password>
-   </relational>
-```
-
-with this one:
-
-```xml
-<type>Relational</type>
-   <relational>
-     <driver>org.postgresql.Driver</driver>
-     <uri>jdbc:postgresql://{{ .Env.i2b2_db_harmonized_host }}:{{ default .Env.i2b2_db_harmonized_port "5432" }}/{{ .Env.i2b2_db_harmonized_name }}</uri>
-     <login>{{ default .Env.i2b2_db__harmonized_user "postgres" }}</login>
-     <password>{{ default .Env.i2b2_db_harmonized_password "postgres" }}</password>
-   </relational>
-
-```
+  The last script creates a template xml `mapHarmonize.xml.tmpl` file in the folder *harmonize_step*.
 
 ## Running EHR pipeline
 

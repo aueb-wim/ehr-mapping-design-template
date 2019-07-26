@@ -11,7 +11,6 @@ db_user="postgres"    # <postgres user>
 # Mipmap paths 
 mipmap_source="./source"
 mipmap_pgproperties="./postgresdb.properties"
-mipmap_target="./target"
 mipmap_output="./output"
 mipmap_preprocess="./preprocess_step"
 mipmap_capture="./capture_step"
@@ -26,36 +25,28 @@ pivoting_sql="pivot_i2b2_MinDate_NEW19_a.sql"
 if [ -z $1 ]; then
     echo "EHR DataFactory step not declared. Exiting..." 
     exit 1
-fi
-if [ $1 = "capture" ]; then
+elif [ $1 = "capture" ]; then
     mipmap_map=$mipmap_capture
     use_mipmap=true
+elif [ $1 = "harmonize" ]; then
+    mipmap_map=$mipmap_harmonize
+    use_mipmap=true
+elif [ $1 = "preprocess" ]; then
+    mipmap_map=$mipmap_preprocess
+    use_mipmap=true
+elif [ $1 = "export" ]; then
+    mipmap_map=$mipmap_export
+    use_mipmap=false
+    echo "not using mipmap"
 else
-    if [ $1 = "harmonize" ]; then
-        mipmap_map=$mipmap_harmonize
-        use_mipmap=true
-    else
-        if [ $1 = "preprocess" ]; then
-            mipmap_map=$mipmap_preprocess
-            use_mipmap=true
-        else
-            if [ $1 = "export" ]; then
-                mipmap_map=$mipmap_export
-                use_mipmap=false
-                echo "not using mipmap"
-            else
-                echo "Not a EHR DataFactory step. Exiting..."
-                exit 1
-            fi
-        fi
-    fi
+    echo "Not a EHR DataFactory step. Exiting..."
+    exit 1
 fi
 
 # setting mipmap paths as enviroment variables to the host
 export mipmap_map
 export mipmap_source
 export mipmap_pgproperties
-export mipmap_target
 
 if [ "$use_mipmap" = true ]; then
     echo "Performing EHR DataFactory $1 step"
