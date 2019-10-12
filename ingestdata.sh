@@ -51,12 +51,9 @@ export mipmap_pgproperties
 if [ "$use_mipmap" = true ]; then
     echo "Performing EHR DataFactory $1 step"
     echo "Using $mipmap_map folder"
-    if [ "$(docker ps -a -f name=^mipmap$)" ]; then
-        echo "Using existing mipmap_etl container"
-        docker-compose run mipmap_etl
-    else 
-        docker-compose up mipmap_etl
-    fi
+    docker-compose up mipmap_etl
+    echo "Removing mipmap container"
+    docker rm mipmap
 else
     if [ $1 = "export" ]; then
         echo "Performing EHR DataFactory $1 step"
