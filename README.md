@@ -8,6 +8,7 @@ This is a EHR mapping design template containing the folders and scripts needed 
 
 - docker (v18)
 - docker-compose (v1.22 - v1.8)
+- [MIPMAP](https://github.com/HBPMedical/MIPMap)
 
 Datafactory User must be in the user group “docker”, so the scripts will run without the “sudo” command.
 To do that, follow the below instructions:
