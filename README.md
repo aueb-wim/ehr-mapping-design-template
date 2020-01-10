@@ -44,68 +44,97 @@ sh build_postgres.sh
 
 2. Place the hospital csv files into the *source* folder and then launch MIPMap. Store the mapping xml file to the design root directory.
 
-## Configuration
+## Preprocess step configuration files
 
-1. Update the *preprocess_step* files (for **preprocess** and **capture** step)
-    - EncounterMapping.properties
-    - PatientMapping.properties
-    - txt files for unpivoting process
+Update the following files located in the `preprocess_step` folder
 
-2. For **capture step**
-    - save the mapping task file in the main folder with the name `map.xml`
-    - run:
+- EncounterMapping.properties
+- PatientMapping.properties
+- run.sh
 
-    ```shell
-    sh templator.sh capture
-    ````
+Create the txt files for unpivoting process (selected and unpivot txt files for each raw input csv)
 
-  The last script creates a template xml `map.xml.tmpl` file in the folder capture_step.
+The final configurations files which are located in the `preprocess_step` folder, will be the following:
 
-3. For **harmonization step**
-    - save the mapping task file in the main folder with the name `mapHarmonize.xml`
-    - run:
+- EncounterMapping.properties
+- PatientMapping.properties
+- run.sh
+- selected<input_csv 1>.txt (columns that will **not** be unpivoted in the 1st input csv)
+- unpivoted<input_csv 1>.txt (columns that will be unpivoted in the 1st input csv)
+- ...
+- selected<input_csv N>.txt
+- upivoted<input_csv N>.txt
 
-    ```shell
-    sh templator.sh harmonize
-    ````
+The total number of the configuration file will be **3 + 2N**, where **N** is the number of input csv files that needed to be unpivoted.
 
-  The last script creates a template xml `mapHarmonize.xml.tmpl` file in the folder *harmonize_step*.
+## Capture step configuration files
 
-## Running EHR pipeline
+1. Update(or replace) the following csv files in `source` folder with metadata:
+    - `hospital_metadata.csv` (metadata about hospital's raw input csv files)
+    - `cde_metadata.csv` (metadata about the pathology data model)
+2. For each hospitals's raw input csv file, we create a doublicate csv file in the `source` folder with the exact same name as the original. Each of those files must contain the original headers(column's name) and a small number of rows filled with data (actual or fictional). Those dublicate files must be in line with the metadata in the hospital_metadata.csv file.
+3. Design the mapping task by using **MIPMAP** and save it in the main folder with the name `map.xml`
+4. Then run:
+
+```shell
+  sh templator.sh capture
+````
+
+The last script creates a template xml `map.xml.tmpl` file in the folder `capture_step`.
+
+The final configurations files are located in the `capture_step` folder and are the following:
+
+- map.xml.tmpl  
+- run.sh
+
+## Harmonization step configuration files
+
+1. Design the mapping task by using **MIPMAP** and save it in the main folder with the name `mapHarmonize.xml`
+2. Then run:
+
+```shell
+  sh templator.sh harmonize
+```
+
+The last script creates a template xml `mapHarmonize.xml.tmpl` file in the folder `harmonize_step`.
+
+The final configurations files are located in the `harmonize_step` folder and are the following:
+  
+- mapHarmonize.xml.tmpl
+- run.sh
+
+## Testing EHR pipeline
 
 ### Step_1 - preprocess step
 
-In DataFactory folder run:
+In the main folder we run:
 
 ```shell
-sh ingestdata.sh preprocess
+  sh ingestdata.sh preprocess
 ```
 
-Auxiliary files are created in the same folder where the hospital csv files are located.
+**Check** if the auxiliary files (EncounterMapping.csv, PatientMapping,csv and the unpivoted csv's) are created in the `source` folder
 
 ### Step_2 - capture step
 
 Caution! Auxilary files must be created first by the preprocessing step.
-In DataFactory folder run:
+
+In the main folder we run:
 
 ```shell
-sh ingestdata.sh capture
+  sh ingestdata.sh capture
 ```
+
+**Check** if the `i2b2_capture` database is populated with data in the postgres container.
 
 ### Step_3 - harmonization step
 
-In DataFactory folder run:
+In the main folder we run:
 
 ```shell
-sh ingestdata.sh harmonize
+  sh ingestdata.sh harmonize
 ```
 
-### Step_4 - local data flattening step
+**Check** if the `i2b2_harmonized` database is populated with data in the postgres container.
 
-In DataFactory folder run:
-
-```shell
-sh ingestdata.sh export
-```
-
-*harmonized_clinical_data.csv* is created in the mipmap output folder 
+If every of the above step has run successfully in our local machine, we are ready to upload the EHR mapping configuration files into the actual DataFactory installation on Hospital node.
