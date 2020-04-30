@@ -1,0 +1,7 @@
+commandSource=csv
+sourceInputPath=/opt/source/{{ patients_csv }}
+commandTarget=db
+targetInputPath=/opt/postgresdb.properties/i2b2-db.properties,patient_mapping
+targetColumns=[patient_ide,patient_ide_source,project_id,patient_num]
+functionPerColumn=[{{ cpatient_id }},{{ hospital_code }},{{ hospital_code }}]
+outputFile=/opt/source/PatientMapping.csv
