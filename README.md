@@ -8,6 +8,7 @@ This is a EHR mapping design template containing the folders and scripts needed 
 
 - docker (v18)
 - docker-compose (v1.22 - v1.8)
+- python3 (v3.5 or greater), python3-pip, python3-tk 
 - [MIPMAP](https://github.com/HBPMedical/MIPMap)
 
 Datafactory User must be in the user group “docker”, so the scripts will run without the “sudo” command.
@@ -47,13 +48,36 @@ sh build_postgres.sh
 
 ## Preprocess step configuration files
 
-Update the following files located in the `preprocess_step` folder
+Create preprocessing configuration files in the `preprocess_step` folder by using the preprosess_tool GUI located in the `preprocess_tool` folder.
 
-- EncounterMapping.properties
-- PatientMapping.properties
-- run.sh
+Launch the tool by giving in terminal: 
+```shell
+cd preprocess_tool
+python3 prepro_gui.py
+```
 
-Create the txt files for unpivoting process (selected and unpivot txt files for each raw input csv)
+![alt text](docs/images/processing_tool_gui.png)
+
+In the **Patient Mapping Configuration** section we declare the csv file that contains all the patients ID unique codes of the incomming EHR batch and we select the column that contains this code. 
+
+In the **Encounter Mapping Configuration** section we declare the csv file that contains all the patients' visits ID unique codes of the incoming EHR batch and we select the column that contains this code and also the column that holds the unique patient's ID code. 
+
+In the **Unpivoting Configuration** Section we first select which csv files we want to be unpivoted. Unpivoting a csv file is the action where the values of some columns in each row, are placed in multiple rows which share the same values of the "selected" columns. For example, let's say we have:
+
+| Column1 | Column2 | Column3 | Column4|
+|---------|---------|---------|--------|
+|  Value1 | Value2  | Value3  | Value4 |
+
+The unpivoted version with the columns 1 and 2 as "selected" columns will be:
+
+| Column1 | Column2 | unPivoted | Value  |
+|---------|---------|-----------|--------|
+|  Value1 | Value2  | Column3   | Value3  |
+|  Value1 | Value2  | Column4   | Value4  |
+
+
+Moving on, we select for each file which columns will be selected. 
+And finaly we select the output folder where we want to save the configurations files (for example `preprocess_step`)
 
 The final configurations files which are located in the `preprocess_step` folder, will be the following:
 

@@ -82,10 +82,11 @@ def produce_encounter_properties(output_path, csv_name, cvisit_id, cpatient_id, 
     env_path = os.path.join(my_path, 'templates')
     env = Environment(loader=FileSystemLoader(env_path))
     template = env.get_template('encountermapping.j2')
+    hospital_with_quotes = '\"' + hospital_code + '\"'
     vars = {'visits_csv': csv_name,
             'cvisit_id': cvisit_id,
             'cpatient_id': cpatient_id,
-            'hospital_code': hospital_code}
+            'hospital_code': hospital_with_quotes}
 
     encounter_properties = os.path.abspath(os.path.join(output_path, 'ecnountermapping.properties'))
     template.stream(vars).dump(encounter_properties)
@@ -103,9 +104,10 @@ def produce_patient_properties(output_path, csv_name, cpatient_id, hospital_code
     env_path = os.path.join(my_path, 'templates')
     env = Environment(loader=FileSystemLoader(env_path))
     template = env.get_template('patientmapping.j2')
+    hospital_with_quotes = '\"' + hospital_code + '\"'
     vars = {'patients_csv': csv_name,
             'cpatient_id': cpatient_id,
-            'hospital_code': hospital_code}
+            'hospital_code': hospital_with_quotes}
 
     patient_properties = os.path.abspath(os.path.join(output_path, 'patientmapping.properties'))
     template.stream(vars).dump(patient_properties)

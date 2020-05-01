@@ -24,7 +24,7 @@ class Application(tk.Frame):
         self.unpivotcsvs = {}
         self.selected_csv_name = None
         self.outputfolder = None
-        #self.add_headers(['one','two','three', 'four'], self.p_csv_headers_lbox)
+
 
     def __init(self):
 
@@ -307,10 +307,6 @@ class Application(tk.Frame):
 
         
         
-
-
-
-
 def main():
     """Main Application Window"""
     root = tk.Tk()
