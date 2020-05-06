@@ -81,8 +81,8 @@ And finaly we select the output folder where we want to save the configurations 
 
 The final configurations files which are located in the `preprocess_step` folder, will be the following:
 
-- EncounterMapping.properties
-- PatientMapping.properties
+- encountermapping.properties
+- patientmapping.properties
 - run.sh
 - selected<input_csv 1>.txt (columns that will **not** be unpivoted in the 1st input csv)
 - unpivoted<input_csv 1>.txt (columns that will be unpivoted in the 1st input csv)
@@ -91,6 +91,25 @@ The final configurations files which are located in the `preprocess_step` folder
 - upivoted<input_csv N>.txt
 
 The total number of the configuration file will be **3 + 2N**, where **N** is the number of input csv files that needed to be unpivoted.
+
+### Creation of the auxilary files
+
+Before continuing to the next step, which is the designing of the "capture" mapping task,we need to create the auxilary csv files:
+
+ -  EncounterMapping.csv
+ -  PatientMapping.csv 
+ -  and the unpivoted csv files 
+
+In order to do that we give in the main mapping design folder:
+
+```shell
+  sh ingestdata.sh preprocess
+```
+
+Check folder “source” if the auxiliary files have been created. Open each file and check if it is not empty. 
+
+If everything is ok, we are ready to go to the next step. 
+
 
 ## Capture step configuration files
 
@@ -130,7 +149,9 @@ The final configurations files are located in the `harmonize_step` folder and ar
 
 ## Testing EHR pipeline
 
-### Step_1 - preprocess step
+The steps are numbered according to the **MIP DATA FACTORY Data Processing User Guide** document
+
+### Step_2B- preprocess step
 
 In the main folder we run:
 
@@ -140,7 +161,7 @@ In the main folder we run:
 
 **Check** if the auxiliary files (EncounterMapping.csv, PatientMapping,csv and the unpivoted csv's) are created in the `source` folder
 
-### Step_2 - capture step
+### Step_3A - capture step
 
 Caution! Auxilary files must be created first by the preprocessing step.
 
@@ -152,7 +173,7 @@ In the main folder we run:
 
 **Check** if the `i2b2_capture` database is populated with data in the postgres container.
 
-### Step_3 - harmonization step
+### Step_4 - harmonization step
 
 In the main folder we run:
 

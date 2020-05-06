@@ -68,5 +68,5 @@ services:
 
     external_links:
       - "demo_postgres:test_postgres"
-    command: ['/opt/map/run.sh']
+    command: ['sh', '/opt/map/run.sh']
     network_mode: bridge
