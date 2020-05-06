@@ -88,7 +88,7 @@ def produce_encounter_properties(output_path, csv_name, cvisit_id, cpatient_id, 
             'cpatient_id': cpatient_id,
             'hospital_code': hospital_with_quotes}
 
-    encounter_properties = os.path.abspath(os.path.join(output_path, 'ecnountermapping.properties'))
+    encounter_properties = os.path.abspath(os.path.join(output_path, 'encountermapping.properties'))
     template.stream(vars).dump(encounter_properties)
 
 
