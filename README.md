@@ -28,6 +28,11 @@ sudo gpasswd -a $USER docker
 Either do a newgrp docker or log out/in to activate the changes to groups.
 You can use `$ docker run hello-world`  to check if you can run docker without sudo.
 
+### Reserved ports
+* 45432: for `demo_postgres` postgreSQL container
+ 
+ This port may change in the configuration. Please edit `docker-compose.yml` and `build_postgres.sh` script if you want to change the default port. 
+
 ## Instructions
 
 1. We create a docker container with the name `demo_postgres` with the 3 databases which are needed by EHR DataFactory pipeline. These databases are:
