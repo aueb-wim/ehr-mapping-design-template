@@ -2,7 +2,7 @@
 
 [![AUEB](https://img.shields.io/badge/AUEB-RC-red.svg)](http://rc.aueb.gr/el/static/home) [![HBP-SP8](https://img.shields.io/badge/HBP-SP8-magenta.svg)](https://www.humanbrainproject.eu/en/follow-hbp/news/category/sp8-medical-informatics-platform/)
 
-This is a EHR mapping design template containing the folders and scripts needed to configure and run the EHR DataFactory pipeline on a machine.
+This is a EHR mapping design template containing the folders and scripts needed to configure and run the EHR [DataFactory pipeline](https://github.com/HBPMedical/ehr-datafactory-template.git) on a hospital node. Please refer to [DataFactory's User Guide](https://mip.ebrains.eu/documentation/User%20Manuals/6) for further details about DataFactory and its mapping-task designing principles.
 
 ## Requirements
 
