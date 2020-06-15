@@ -20,7 +20,7 @@ df_db_pwd=$(getValueFromConfig "db_pwd")
 
 export dfcontainer_name
 export db_capture
-export db_harminized
+export db_harmonized
 export df_db_user
 export df_db_pwd
 
@@ -33,9 +33,6 @@ mipmap_capture="./capture_step"
 mipmap_harmonize="./harmonize_step"
 mipmap_export="./export_step"
 
-
-# Settings for exporting
-export_csv=harmonized_clinical_data.csv
 
 if [ -z $1 ]; then
     echo "EHR DataFactory step not declared. Exiting..." 
@@ -73,23 +70,30 @@ else
     if [ $1 = "export" ]; then
         echo "Performing EHR DataFactory $1 step"
         echo "Using $mipmap_map folder"
-        # check if there is an existing flattened csv in postgres container and delete it
+       
+        # which flattening method? 
+        if [ $2 = 'mindate' ]; then
+            pivoting_sql=pivot_i2b2_MinDate.sql
+            export_csv='harmonized_clinical_data_min.csv'
+        elif [ $2 = 'maxdate' ]; then
+            pivoting_sql=pivot_i2b2_MaxDate.sql
+            export_csv='harmonized_clinical_data_max.csv'
+        elif [ $2 = '6months' ]; then
+            pivoting_sql=pivot_i2b2_6_months_MRI_Diag.sql
+            export_csv='harmonized_clinical_data.csv'
+        elif [ $2 = 'longitude' ]; then
+            pivoting_sql=pivot_i2b2_longitudinal.sql
+            export_csv='harmonized_clinical_data_long.csv'
+        else
+            echo "Please give flatting method"
+            exit 1
+        fi
+
+         # check if there is an existing flattened csv in postgres container and delete it
         if $(docker exec -i $dfcontainer_name bash -c "[ -f /tmp/${export_csv} ]"); then
             echo "Deleting previous created export csv file..."
             docker exec $dfcontainer_name rm -rf /tmp/${export_csv}
         fi
-        # which flattening methon? 
-        if [ $2 = 'mindate' ]; then
-            pivoting_sql=pivot_i2b2_MaxDate.sql
-        elif [ $2 = 'maxdate' ]; then
-            pivoting_sql=pivot_i2b2_MaxDate.sql
-        elif [ $2 = '6months' ]; then
-            pivoting_sql=pivot_i2b2_6_months_MRI_Diag.sql
-        elif [$2 = 'longitude' ]; then
-            pivoting_sql=pivot_i2b2_longitudinal.sql
-        else
-            echo "Please give flatting method"
-            exit 1
 
         # Copy the sql script to the postgres container
         docker exec -i $dfcontainer_name sh -c "cat > /tmp/pivot_i2b2.sql" < ${mipmap_export}/${pivoting_sql}

@@ -20,7 +20,7 @@ export db_harmonized
 export df_db_user
 export df_db_pwd
 
-docker run -p $dfcontainer_port:5432 --name $dfcontainer_name -e POSTGRES_PASSWORD=$df_db_pwd -d postgres:9.6
+docker run -p $dfcontainer_port:5432 --name $dfcontainer_name -e POSTGRES_PASSWORD="$df_db_pwd" -d postgres:9.6
 sleep 10
 
 # create mipmap database

@@ -5,4 +5,3 @@ db_harmonized=i2b2_redcap_harmonized
 db_user=postgres
 db_pwd=1234
 export_csv=harmonized_clinical_data.csv
-pivoting_sql=pivot_i2b2_MinDate_NEW19_a.sql

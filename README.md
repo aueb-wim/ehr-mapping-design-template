@@ -36,8 +36,10 @@ You can use `$ docker run hello-world`  to check if you can run docker without s
 ## Setup and sample data preparation
 
 1. Clone this repo
+   
+2. Edit the `config.sys` file, if you 
   
-2. Execute the `build_postgres.sh` script to create a docker container with the name `demo_postgres` with the 3 databases which are needed by EHR DataFactory pipeline. These databases are:
+3. Execute the `build_postgres.sh` script to create a docker container with the name `demo_postgres` with the 3 databases which are needed by EHR DataFactory pipeline. These databases are:
 
 - mipmap
 - i2b2_capture
@@ -113,7 +115,7 @@ In order to do that we give in the main mapping design folder:
 
 Check folder “source” if the auxiliary files have been created. Open each file and check if it is not empty. 
 
-If everything is ok, we are ready to go to the next step. 
+If everything is ok, we are ready to go to the next step.
 
 
 ## Capture step configuration files
@@ -185,6 +187,27 @@ In the main folder we run:
   sh ingestdata.sh harmonize
 ```
 
-**Check** if the `i2b2_harmonized` database is populated with data in the postgres container.
+**Check** if the `i2b2_harmonized` database is populated with data in the postgres container. Also, we could run the `export_step` and check if the flattened csv file is correct. 
 
 If every of the above step has run successfully in our local machine, we are ready to upload the EHR mapping configuration files into the actual DataFactory installation on Hospital node.
+
+### Step_5 - export step (optional)
+
+Run the export step as an extra measure for testing the EHR mapping configuration files, before upload them into the Hospital node. Check if the produced flattened csv are correct.
+
+```shell
+  sh ingestdata.sh export <flatening method>
+```
+
+`flattening method` we declare the csv flattening method. The choices are the following:
+
+  1. 'mindate': For each patient, export one row with all information related to her first visit
+  
+  2. 'maxdate': For each patient, export one row with all information related to her last visit
+  
+  3. '6months': For each patient, export one row with the information according to the 6-month window selection strategy defined by CHUV for clinical data related to MRI's. The criteria in detail:
+      - For a patient to have a row in the output CSV she has to have an MRI and a VALID Diagnosis (etiology1 !=“diagnostic en attente” and etiology1 != “NA”) in a 6-month window to the MRI. If there are more than one MRIs choose the first one. If there are more than one Diagnosis, choose the closest VALID to the MRI.
+      - The age and the visit date selected are the ones of the Diagnosis.
+      - Having information about MMSE and MoCA is optional. Has to be within a 6-month window to the Diagnosis date.
+      
+  4. 'longitude': For each patient, export all available information.

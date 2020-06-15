@@ -1,3 +1,3 @@
-# Preprocessing step configuration file process
+# Output folder
 
-Place here the "preprocess step: config files. git 
+The flattened csv will be exported here.
