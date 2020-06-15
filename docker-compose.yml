@@ -33,9 +33,9 @@ services:
     container_name: "i2b2-setup"
     command: "upgrade head"
     external_links:
-      - "demo_postgres:test_postgres"
+      - "${dfcontainer_name}:test_postgres"
     environment:
-      - DB_URL=postgresql://postgres:1234@test_postgres:5432/i2b2_capture
+      - DB_URL=postgresql://${df_db_user}:${df_db_pwd}@test_postgres:5432/${db_capture}
     network_mode: bridge
 
 
@@ -44,9 +44,9 @@ services:
     container_name: "i2b2-setup-harmonized"
     command: "upgrade head"
     external_links:
-      - "demo_postgres:test_postgres"
+      - "${dfcontainer_name}:test_postgres"
     environment:
-      - DB_URL=postgresql://postgres:1234@test_postgres:5432/i2b2_harmonized
+      - DB_URL=postgresql://${df_db_user}:${df_db_pwd}@test_postgres:5432/${db_harmonized}
     network_mode: bridge
 
 
@@ -60,13 +60,13 @@ services:
     environment:   
       - i2b2_db_host=test_postgres
       - i2b2_db_port=5432
-      - i2b2_db_name=i2b2_capture
-      - i2b2_db_user=postgres
-      - i2b2_db_password=1234
-      - i2b2_db_harmonized_name=i2b2_harmonized
+      - "i2b2_db_name=${db_capture}"
+      - "i2b2_db_user=${df_db_user}"
+      - "i2b2_db_password=${df_db_pwd}"
+      - "i2b2_db_harmonized_name=${db_harmonized}"
       - mipmap_db_name=mipmap
 
     external_links:
-      - "demo_postgres:test_postgres"
+      - "${dfcontainer_name}:test_postgres"
     command: ['sh', '/opt/map/run.sh']
     network_mode: bridge

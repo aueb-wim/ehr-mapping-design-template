@@ -33,15 +33,15 @@ You can use `$ docker run hello-world`  to check if you can run docker without s
  
  This port may change in the configuration. Please edit `docker-compose.yml` and `build_postgres.sh` script if you want to change the default port. 
 
-## Instructions
+## Setup and sample data preparation
 
-1. We create a docker container with the name `demo_postgres` with the 3 databases which are needed by EHR DataFactory pipeline. These databases are:
+1. Clone this repo
+  
+2. Execute the `build_postgres.sh` script to create a docker container with the name `demo_postgres` with the 3 databases which are needed by EHR DataFactory pipeline. These databases are:
 
 - mipmap
 - i2b2_capture
 - i2b2_harmonized
-
-To create this postgres container run:
 
 ```shell
 sh build_postgres.sh
@@ -49,13 +49,13 @@ sh build_postgres.sh
 
 **Caution!** If `demo_postgres` container is already exist the script will drop the 3 databases and will create new ones.
 
-2. Place the hospital csv files into the *source* folder and then launch MIPMap. Store the mapping xml file to the design root directory.
+3. Place the hospital csv files into the `source` folder. It is a good practice, for privacy reasons, not using the original csv hospital files containing all the data, but work with copy of those files having the same filenames and containing a limited number of rows (i.e. 15-40).
 
 ## Preprocess step configuration files
 
 Create preprocessing configuration files in the `preprocess_step` folder by using the preprosess_tool GUI located in the `preprocess_tool` folder.
 
-Launch the tool by giving in terminal: 
+Launch the tool by giving in terminal:
 ```shell
 cd preprocess_tool
 python3 prepro_gui.py
@@ -63,11 +63,11 @@ python3 prepro_gui.py
 
 ![alt text](docs/images/processing_tool_gui.png)
 
-In the **Patient Mapping Configuration** section we declare the csv file that contains all the patients ID unique codes of the incomming EHR batch and we select the column that contains this code. 
+In the **Patient Mapping Configuration** section we declare the csv file (located in the `source` folder, see step 3 of the sample data preparation section) that contains all the patients ID unique codes of the incomming EHR batch and we select the column that contains this code. 
 
-In the **Encounter Mapping Configuration** section we declare the csv file that contains all the patients' visits ID unique codes of the incoming EHR batch and we select the column that contains this code and also the column that holds the unique patient's ID code. 
+In the **Encounter Mapping Configuration** section we declare the csv file (located in the `source` folder, see step 3 of the sample data preparation section) that contains all the patients' visits ID unique codes of the incoming EHR batch and we select the column that contains this code and also the column that holds the unique patient's ID code.
 
-In the **Unpivoting Configuration** Section we first select which csv files we want to be unpivoted. Unpivoting a csv file is the action where the values of some columns in each row, are placed in multiple rows which share the same values of the "selected" columns. For example, let's say we have:
+In the **Unpivoting Configuration** Section we first select which csv files (located in the `source` folder, see step 3 of the sample data preparation section) we want to be unpivoted. Unpivoting a csv file is the action where the values of some columns in each row, are placed in multiple rows which share the same values of the "selected" columns. For example, let's say we have:
 
 | Column1 | Column2 | Column3 | Column4|
 |---------|---------|---------|--------|
@@ -81,7 +81,7 @@ The unpivoted version with the columns 1 and 2 as "selected" columns will be:
 |  Value1 | Value2  | Column4   | Value4  |
 
 
-Moving on, we select for each file which columns will be selected. 
+Moving on, we select for each file which columns will be selected.
 And finaly we select the output folder where we want to save the configurations files (for example `preprocess_step`)
 
 The final configurations files which are located in the `preprocess_step` folder, will be the following:
@@ -97,9 +97,9 @@ The final configurations files which are located in the `preprocess_step` folder
 
 The total number of the configuration file will be **3 + 2N**, where **N** is the number of input csv files that needed to be unpivoted.
 
-### Creation of the auxilary files
+### Creation of the auxilary files and Testing the preprocessing configuration files
 
-Before continuing to the next step, which is the designing of the "capture" mapping task,we need to create the auxilary csv files:
+Before continuing to the next step (**Capture step configuration files**), which is the designing of the "capture" mapping task, we **must** create the auxilary csv files:
 
  -  EncounterMapping.csv
  -  PatientMapping.csv 
@@ -121,9 +121,8 @@ If everything is ok, we are ready to go to the next step.
 1. Update(or replace) the following csv files in `source` folder with metadata:
     - `hospital_metadata.csv` (metadata about hospital's raw input csv files)
     - `cde_metadata.csv` (metadata about the pathology data model)
-2. For each hospitals's raw input csv file, we create a doublicate csv file in the `source` folder with the exact same name as the original. Each of those files must contain the original headers(column's name) and a small number of rows filled with data (actual or fictional). Those dublicate files must be in line with the metadata in the hospital_metadata.csv file.
-3. Design the mapping task by using **MIPMAP** and save it in the main folder with the name `map.xml`
-4. Then run:
+2. Design the mapping task by using **MIPMAP** and save it in the main folder with the name `map.xml` 
+3. Then run:
 
 ```shell
   sh templator.sh capture
