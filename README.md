@@ -101,7 +101,7 @@ The total number of the configuration file will be **3 + 2N**, where **N** is th
 
 ### Creation of the auxilary files and Testing the preprocessing configuration files
 
-Before continuing to the next step (**Capture step configuration files**), which is the designing of the "capture" mapping task, we **must** create the auxilary csv files:
+Before continuing to the next step (**Capture step configuration files**), which is the designing of the "capture" mapping task, we **must** create the auxilary csv files (Data Factory **STEP_2B**):
 
  -  EncounterMapping.csv
  -  PatientMapping.csv 
@@ -123,8 +123,9 @@ If everything is ok, we are ready to go to the next step.
 1. Update(or replace) the following csv files in `source` folder with metadata:
     - `hospital_metadata.csv` (metadata about hospital's raw input csv files)
     - `cde_metadata.csv` (metadata about the pathology data model)
-2. Design the mapping task by using **MIPMAP** and save it in the main folder with the name `map.xml` 
-3. Then run:
+2. Ensure that the auxiliary files created from the previous step are located in the `source` folder. 
+3. Design the mapping task by using **MIPMAP** and save it in the main folder with the name `map.xml` 
+4. Then run:
 
 ```shell
   sh templator.sh capture
@@ -189,11 +190,12 @@ In the main folder we run:
 
 **Check** if the `i2b2_harmonized` database is populated with data in the postgres container. Also, we could run the `export_step` and check if the flattened csv file is correct. 
 
-If every of the above step has run successfully in our local machine, we are ready to upload the EHR mapping configuration files into the actual DataFactory installation on Hospital node.
+If every of the above steps have run successfully in our local machine, we are ready to upload the EHR mapping configuration files into the actual DataFactory installation on Hospital node.
 
-### Step_5 - export step (optional)
+### Step_5B - export step (optional)
 
-Run the export step as an extra measure for testing the EHR mapping configuration files, before upload them into the Hospital node. Check if the produced flattened csv are correct.
+By inspecting the flattened csv file created in this step, we can gain more confidence on the validity of our EHR mapping configuration files (mapping tasks xml files).
+We sugest to run the export step multiple times using different flattening methods.
 
 ```shell
   sh ingestdata.sh export <flatening method>
