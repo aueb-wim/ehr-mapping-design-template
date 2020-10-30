@@ -31,13 +31,13 @@ You can use `$ docker run hello-world`  to check if you can run docker without s
 ### Reserved ports
 * 45432: for `demo_postgres` postgreSQL container
  
- This port may change in the configuration. Please edit `docker-compose.yml` and `build_postgres.sh` script if you want to change the default port. 
+ This port may change in the configuration. Please edit `config.sys` file if you want to change the default port. 
 
 ## Setup and sample data preparation
 
 1. Clone this repo
    
-2. Edit the `config.sys` file, if you 
+2. Edit the `config.sys` file, if you want to change the default settings.
   
 3. Execute the `build_postgres.sh` script to create a docker container with the name `demo_postgres` with the 3 databases which are needed by EHR DataFactory pipeline. These databases are:
 
@@ -49,7 +49,7 @@ You can use `$ docker run hello-world`  to check if you can run docker without s
 sh build_postgres.sh
 ```
 
-**Caution!** If `demo_postgres` container is already exist the script will drop the 3 databases and will create new ones.
+**Caution!** If `demo_postgres` container is already exist the script will drop the 3 databases and will create new ones. Also make sure that `demo_postgres` container is running, otherwise the script will fail. In case the container exist and is stopped, you must restart the container.
 
 3. Place the hospital csv files into the `source` folder. It is a good practice, for privacy reasons, not using the original csv hospital files containing all the data, but work with copy of those files having the same filenames and containing a limited number of rows (i.e. 15-40).
 
