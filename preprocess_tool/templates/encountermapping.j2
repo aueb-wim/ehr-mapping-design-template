@@ -1,0 +1,7 @@
+commandSource=csv
+sourceInputPath=/opt/source/{{ visits_csv }}
+commandTarget=db
+targetInputPath=/opt/postgresdb.properties/i2b2-db.properties,encounter_mapping
+targetColumns=[encounter_ide, encounter_ide_source, project_id, patient_ide, patient_ide_source, encounter_num]
+functionPerColumn=[{{ cvisit_id }},{{ hospital_code }},{{ hospital_code }},{{ cpatient_id }},{{ hospital_code }}]
+outputFile=/opt/source/EncounterMapping.csv

@@ -1,0 +1,183 @@
+csvFile,name,code,type,values,unit,canBeNull,description,comments,conceptPath,methodology
+custom_file,AV45,av45,real,,,,AV45 Average AV45 SUVR of frontal  anterior cingulate  precuneus  and parietal cortex\nrelative to the cerebellum,,/root/pet/av45,1
+custom_file,FDG-PET,fdg,real,,,,Average FDG-PET of angular  temporal  and posterior cingulate. Most important hypometabolic regions that are indicative of pathological metabolic change in MCI and AD.,,/root/pet/fdg,2
+custom_file,PIB,pib,real,,,,Average PIB SUVR of frontal cortex  anterior cingulate  precuneus cortex  and parietal cortex.,,/root/pet/pib,3
+custom_file,Brainstem,brainstem,real,,cm3,,Brainstem volume,,/root/brain_anatomy/brainstem,4
+custom_file,TIV,tiv,real,,cm3,,Total intra-cranial volume,,/root/brain_anatomy/tiv,5
+custom_file,3rd Ventricle,_3rdventricle,real,,cm3,,,,/root/brain_anatomy/csf_volume/_3rdventricle,6
+custom_file,4th Ventricle,_4thventricle,real,,cm3,,,,/root/brain_anatomy/csf_volume/_4thventricle,7
+custom_file,CSF global,csfglobal,real,,cm3,,,,/root/brain_anatomy/csf_volume/csfglobal,8
+custom_file,Left inferior lateral ventricle,leftinflatvent,real,,cm3,,,,/root/brain_anatomy/csf_volume/leftinflatvent,9
+custom_file,Left lateral ventricle,leftlateralventricle,real,,cm3,,,,/root/brain_anatomy/csf_volume/leftlateralventricle,10
+custom_file,Right inferior lateral ventricle,rightinflatvent,real,,cm3,,,,/root/brain_anatomy/csf_volume/rightinflatvent,11
+custom_file,Right lateral ventricle,rightlateralventricle,real,,cm3,,,,/root/brain_anatomy/csf_volume/rightlateralventricle,12
+custom_file,Cerebellar Vermal Lobules I-V,cerebellarvermallobulesiv,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebellum/cerebellarvermallobulesiv,13
+custom_file,Cerebellar Vermal Lobules VIII-X,cerebellarvermallobulesviiix,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebellum/cerebellarvermallobulesviiix,14
+custom_file,Cerebellar Vermal Lobules VI-VII,cerebellarvermallobulesvivii,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebellum/cerebellarvermallobulesvivii,15
+custom_file,Left Cerebellum Exterior,leftcerebellumexterior,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebellum/leftcerebellumexterior,16
+custom_file,Right Cerebellum Exterior,rightcerebellumexterior,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebellum/rightcerebellumexterior,17
+custom_file,Left Amygdala,leftamygdala,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebral_nuclei/amygdala/leftamygdala,18
+custom_file,Right Amygdala,rightamygdala,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebral_nuclei/amygdala/rightamygdala,19
+custom_file,Left Accumbens Area,leftaccumbensarea,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebral_nuclei/basal_ganglia/leftaccumbensarea,20
+custom_file,Left Basal Forebrain,leftbasalforebrain,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebral_nuclei/basal_ganglia/leftbasalforebrain,21
+custom_file,Left Caudate,leftcaudate,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebral_nuclei/basal_ganglia/leftcaudate,22
+custom_file,Left Pallidum,leftpallidum,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebral_nuclei/basal_ganglia/leftpallidum,23
+custom_file,Left Putamen,leftputamen,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebral_nuclei/basal_ganglia/leftputamen,24
+custom_file,Right Accumbens Area,rightaccumbensarea,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebral_nuclei/basal_ganglia/rightaccumbensarea,25
+custom_file,Right Basal Forebrain,rightbasalforebrain,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebral_nuclei/basal_ganglia/rightbasalforebrain,26
+custom_file,Right Caudate,rightcaudate,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebral_nuclei/basal_ganglia/rightcaudate,27
+custom_file,Right Pallidum,rightpallidum,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebral_nuclei/basal_ganglia/rightpallidum,28
+custom_file,Right Putamen,rightputamen,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/cerebral_nuclei/basal_ganglia/rightputamen,29
+custom_file,Left Ventral DC,leftventraldc,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/diencephalon/leftventraldc,30
+custom_file,Right Ventral DC,rightventraldc,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/diencephalon/rightventraldc,31
+custom_file,Left anterior orbital gyrus,leftaorganteriororbitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftaorganteriororbitalgyrus,32
+custom_file,Left central operculum,leftcocentraloperculum,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftcocentraloperculum,33
+custom_file,Left frontal operculum,leftfofrontaloperculum,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftfofrontaloperculum,34
+custom_file,Left frontal pole,leftfrpfrontalpole,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftfrpfrontalpole,35
+custom_file,Left gyrus rectus,leftgregyrusrectus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftgregyrusrectus,36
+custom_file,Left lateral orbital gyrus,leftlorglateralorbitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftlorglateralorbitalgyrus,37
+custom_file,Left medial frontal cortex,leftmfcmedialfrontalcortex,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftmfcmedialfrontalcortex,38
+custom_file,Left middle frontal gyrus,leftmfgmiddlefrontalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftmfgmiddlefrontalgyrus,39
+custom_file,Left medial orbital gyrus,leftmorgmedialorbitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftmorgmedialorbitalgyrus,40
+custom_file,Left precentral gyrus medial segment,leftmprgprecentralgyrusmedialsegment,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftmprgprecentralgyrusmedialsegment,41
+custom_file,Left superior frontal gyrus medial segment,leftmsfgsuperiorfrontalgyrusmedialsegment,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftmsfgsuperiorfrontalgyrusmedialsegment,42
+custom_file,Left opercular part of the inferior frontal gyrus,leftopifgopercularpartoftheinferiorfrontalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftopifgopercularpartoftheinferiorfrontalgyrus,43
+custom_file,Left orbital part of the inferior frontal gyrus,leftorifgorbitalpartoftheinferiorfrontalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftorifgorbitalpartoftheinferiorfrontalgyrus,44
+custom_file,Left parietal operculum,leftpoparietaloperculum,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftpoparietaloperculum,45
+custom_file,Left posterior orbital gyrus,leftporgposteriororbitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftporgposteriororbitalgyrus,46
+custom_file,Left precentral gyrus,leftprgprecentralgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftprgprecentralgyrus,47
+custom_file,Left subcallosal area,leftscasubcallosalarea,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftscasubcallosalarea,48
+custom_file,Left superior frontal gyrus,leftsfgsuperiorfrontalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftsfgsuperiorfrontalgyrus,49
+custom_file,Left supplementary motor cortex,leftsmcsupplementarymotorcortex,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/leftsmcsupplementarymotorcortex,50
+custom_file,Left triangular part of the inferior frontal gyrus,lefttrifgtriangularpartoftheinferiorfrontalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/lefttrifgtriangularpartoftheinferiorfrontalgyrus,51
+custom_file,Right anterior orbital gyrus,rightaorganteriororbitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightaorganteriororbitalgyrus,52
+custom_file,Right central operculum,rightcocentraloperculum,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightcocentraloperculum,53
+custom_file,Right frontal operculum,rightfofrontaloperculum,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightfofrontaloperculum,54
+custom_file,Right frontal pole,rightfrpfrontalpole,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightfrpfrontalpole,55
+custom_file,Right gyrus rectus,rightgregyrusrectus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightgregyrusrectus,56
+custom_file,Right lateral orbital gyrus,rightlorglateralorbitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightlorglateralorbitalgyrus,57
+custom_file,Right medial frontal cortex,rightmfcmedialfrontalcortex,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightmfcmedialfrontalcortex,58
+custom_file,Right middle frontal gyrus,rightmfgmiddlefrontalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightmfgmiddlefrontalgyrus,59
+custom_file,Right medial orbital gyrus,rightmorgmedialorbitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightmorgmedialorbitalgyrus,60
+custom_file,Right precentral gyrus medial segment,rightmprgprecentralgyrusmedialsegment,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightmprgprecentralgyrusmedialsegment,61
+custom_file,Right superior frontal gyrus medial segment,rightmsfgsuperiorfrontalgyrusmedialsegment,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightmsfgsuperiorfrontalgyrusmedialsegment,62
+custom_file,Right opercular part of the inferior frontal gyrus,rightopifgopercularpartoftheinferiorfrontalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightopifgopercularpartoftheinferiorfrontalgyrus,63
+custom_file,Right orbital part of the inferior frontal gyrus,rightorifgorbitalpartoftheinferiorfrontalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightorifgorbitalpartoftheinferiorfrontalgyrus,64
+custom_file,Right parietal operculum,rightpoparietaloperculum,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightpoparietaloperculum,65
+custom_file,Right posterior orbital gyrus,rightporgposteriororbitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightporgposteriororbitalgyrus,66
+custom_file,Right precentral gyrus,rightprgprecentralgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightprgprecentralgyrus,67
+custom_file,Right subcallosal area,rightscasubcallosalarea,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightscasubcallosalarea,68
+custom_file,Right superior frontal gyrus,rightsfgsuperiorfrontalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightsfgsuperiorfrontalgyrus,69
+custom_file,Right supplementary motor cortex,rightsmcsupplementarymotorcortex,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/rightsmcsupplementarymotorcortex,70
+custom_file,Right triangular part of the inferior frontal gyrus,righttrifgtriangularpartoftheinferiorfrontalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/frontal/righttrifgtriangularpartoftheinferiorfrontalgyrus,71
+custom_file,Left anterior insula,leftainsanteriorinsula,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/insula/leftainsanteriorinsula,72
+custom_file,Left posterior insula,leftpinsposteriorinsula,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/insula/leftpinsposteriorinsula,73
+custom_file,Right anterior insula,rightainsanteriorinsula,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/insula/rightainsanteriorinsula,74
+custom_file,Right posterior insula,rightpinsposteriorinsula,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/insula/rightpinsposteriorinsula,75
+custom_file,Left anterior cingulate gyrus,leftacgganteriorcingulategyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/leftacgganteriorcingulategyrus,76
+custom_file,Left entorhinal area,leftententorhinalarea,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/leftententorhinalarea,77
+custom_file,Left Hippocampus,lefthippocampus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/lefthippocampus,78
+custom_file,Left middle cingulate gyrus,leftmcggmiddlecingulategyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/leftmcggmiddlecingulategyrus,79
+custom_file,Left posterior cingulate gyrus,leftpcggposteriorcingulategyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/leftpcggposteriorcingulategyrus,80
+custom_file,Left parahippocampal gyrus,leftphgparahippocampalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/leftphgparahippocampalgyrus,81
+custom_file,Left Thalamus,leftthalamusproper,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/leftthalamusproper,82
+custom_file,Right anterior cingulate gyrus,rightacgganteriorcingulategyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/rightacgganteriorcingulategyrus,83
+custom_file,Right entorhinal area,rightententorhinalarea,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/rightententorhinalarea,84
+custom_file,Right Hippocampus,righthippocampus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/righthippocampus,85
+custom_file,Right middle cingulate gyrus,rightmcggmiddlecingulategyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/rightmcggmiddlecingulategyrus,86
+custom_file,Right posterior cingulate gyrus,rightpcggposteriorcingulategyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/rightpcggposteriorcingulategyrus,87
+custom_file,Right parahippocampal gyrus,rightphgparahippocampalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/rightphgparahippocampalgyrus,88
+custom_file,Right Thalamus,rightthalamusproper,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/limbic/rightthalamusproper,89
+custom_file,Left calcarine cortex,leftcalccalcarinecortex,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/leftcalccalcarinecortex,90
+custom_file,Left cuneus,leftcuncuneus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/leftcuncuneus,91
+custom_file,Left inferior occipital gyrus,leftioginferioroccipitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/leftioginferioroccipitalgyrus,92
+custom_file,Left lingual gyrus,leftliglingualgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/leftliglingualgyrus,93
+custom_file,Left middle occipital gyrus,leftmogmiddleoccipitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/leftmogmiddleoccipitalgyrus,94
+custom_file,Left occipital pole,leftocpoccipitalpole,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/leftocpoccipitalpole,95
+custom_file,Left occipital fusiform gyrus,leftofugoccipitalfusiformgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/leftofugoccipitalfusiformgyrus,96
+custom_file,Left superior occipital gyrus,leftsogsuperioroccipitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/leftsogsuperioroccipitalgyrus,97
+custom_file,Right calcarine cortex,rightcalccalcarinecortex,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/rightcalccalcarinecortex,98
+custom_file,Right cuneus,rightcuncuneus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/rightcuncuneus,99
+custom_file,Right inferior occipital gyrus,rightioginferioroccipitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/rightioginferioroccipitalgyrus,100
+custom_file,Right lingual gyrus,rightliglingualgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/rightliglingualgyrus,101
+custom_file,Right middle occipital gyrus,rightmogmiddleoccipitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/rightmogmiddleoccipitalgyrus,102
+custom_file,Right occipital pole,rightocpoccipitalpole,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/rightocpoccipitalpole,103
+custom_file,Right occipital fusiform gyrus,rightofugoccipitalfusiformgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/rightofugoccipitalfusiformgyrus,104
+custom_file,Right superior occipital gyrus,rightsogsuperioroccipitalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/occipital/rightsogsuperioroccipitalgyrus,105
+custom_file,Left angular gyrus,leftangangulargyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/parietal/leftangangulargyrus,106
+custom_file,Left postcentral gyrus medial segment,leftmpogpostcentralgyrusmedialsegment,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/parietal/leftmpogpostcentralgyrusmedialsegment,107
+custom_file,Left precuneus,leftpcuprecuneus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/parietal/leftpcuprecuneus,108
+custom_file,Left postcentral gyrus,leftpogpostcentralgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/parietal/leftpogpostcentralgyrus,109
+custom_file,Left supramarginal gyrus,leftsmgsupramarginalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/parietal/leftsmgsupramarginalgyrus,110
+custom_file,Left superior parietal lobule,leftsplsuperiorparietallobule,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/parietal/leftsplsuperiorparietallobule,111
+custom_file,Right angular gyrus,rightangangulargyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/parietal/rightangangulargyrus,112
+custom_file,Right postcentral gyrus medial segment,rightmpogpostcentralgyrusmedialsegment,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/parietal/rightmpogpostcentralgyrusmedialsegment,113
+custom_file,Right precuneus,rightpcuprecuneus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/parietal/rightpcuprecuneus,114
+custom_file,Right postcentral gyrus,rightpogpostcentralgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/parietal/rightpogpostcentralgyrus,115
+custom_file,Right supramarginal gyrus,rightsmgsupramarginalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/parietal/rightsmgsupramarginalgyrus,116
+custom_file,Right superior parietal lobule,rightsplsuperiorparietallobule,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/parietal/rightsplsuperiorparietallobule,117
+custom_file,Left fusiform gyrus,leftfugfusiformgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/leftfugfusiformgyrus,118
+custom_file,Left inferior temporal gyrus,leftitginferiortemporalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/leftitginferiortemporalgyrus,119
+custom_file,Left middle temporal gyrus,leftmtgmiddletemporalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/leftmtgmiddletemporalgyrus,120
+custom_file,Left planum polare,leftppplanumpolare,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/leftppplanumpolare,121
+custom_file,Left planum temporale,leftptplanumtemporale,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/leftptplanumtemporale,122
+custom_file,Left superior temporal gyrus,leftstgsuperiortemporalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/leftstgsuperiortemporalgyrus,123
+custom_file,Left temporal pole,lefttmptemporalpole,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/lefttmptemporalpole,124
+custom_file,Left transverse temporal gyrus,leftttgtransversetemporalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/leftttgtransversetemporalgyrus,125
+custom_file,Right fusiform gyrus,rightfugfusiformgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/rightfugfusiformgyrus,126
+custom_file,Right inferior temporal gyrus,rightitginferiortemporalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/rightitginferiortemporalgyrus,127
+custom_file,Right middle temporal gyrus,rightmtgmiddletemporalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/rightmtgmiddletemporalgyrus,128
+custom_file,Right planum polare,rightppplanumpolare,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/rightppplanumpolare,129
+custom_file,Right planum temporale,rightptplanumtemporale,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/rightptplanumtemporale,130
+custom_file,Right superior temporal gyrus,rightstgsuperiortemporalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/rightstgsuperiortemporalgyrus,131
+custom_file,Right temporal pole,righttmptemporalpole,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/righttmptemporalpole,132
+custom_file,Right transverse temporal gyrus,rightttgtransversetemporalgyrus,real,,cm3,,,,/root/brain_anatomy/grey_matter_volume/temporal/rightttgtransversetemporalgyrus,133
+custom_file,Left Cerebellum White Matter,leftcerebellumwhitematter,real,,cm3,,,,/root/brain_anatomy/white_matter_volume/leftcerebellumwhitematter,134
+custom_file,Left Cerebral White Matter,leftcerebralwhitematter,real,,cm3,,,,/root/brain_anatomy/white_matter_volume/leftcerebralwhitematter,135
+custom_file,Optic chiasm,opticchiasm,real,,cm3,,,,/root/brain_anatomy/white_matter_volume/opticchiasm,136
+custom_file,Right Cerebellum White Matter,rightcerebellumwhitematter,real,,cm3,,,,/root/brain_anatomy/white_matter_volume/rightcerebellumwhitematter,137
+custom_file,Right Cerebral White Matter,rightcerebralwhitematter,real,,cm3,,,,/root/brain_anatomy/white_matter_volume/rightcerebralwhitematter,138
+custom_file,ADNI category,adnicategory,polynominal,"{“AD”,”Alzheimer’s Disease”},{”MCI”,”Mild Cognitive Impairment”},{”CN”,”Cognitively Normal”}",,,Terms aggregating illnesses into classes. Note that the diagnosis in this categories are given only for the ADNI data set.,,/root/diagnosis/dataset_specific_diagnosis/adnicategory,139
+custom_file,Alzheimer Broad Category,alzheimerbroadcategory,polynominal,"{“AD”,”Alzheimer’s disease”},{”CN”,”Cognitively Normal”},{”Other”,”Other”},{“MCI”,”Mild cognitive impairment”}",,,There will be two broad categories taken into account. Alzheimer s disease (AD) in which the diagnostic is 100% certain and <Other> comprising the rest of Alzheimer s related categories. The <Other> category refers to Alzheime s related diagnosis which origin can be traced to other pathology eg. vascular. In this category MCI diagnosis can also be found. In summary  all Alzheimer s related diagnosis that are not pure.,,/root/diagnosis/alzheimerbroadcategory,140
+custom_file,EDSD category,edsdcategory,polynominal,"{“AD”,”Alzheimer’s Disease”},{”MCI”,”Mild Cognitive Impairment”},{”CN”,”Cognitively Normal”}",,,Terms aggregating illnesses into classes. Note that the diagnosis in this categories are given only for the EDSD data set.,,/root/diagnosis/dataset_specific_diagnosis/edsdcategory,141
+custom_file,Neurodegeneratives categories,neurodegenerativescategories,polynominal,"{“PD”,”Parkinson’s disease”},{”AD”,”Alzheimer’s disease”},{”HD”,”Huntington’s disease""”},{”ALS”,”Amyotrophic lateral sclerosis”},{”BD”,”Batten disease”},{”MCI”,”MCI”},{”LBD”,”Lewy body dementia”},{”CJD”,”Creutzfeldt Jakob disease”},{”FTD”,""Frontotemporal dementia""},{”MS”,”Multiple sclerosis”},{”CN”,”Cognitively normal”}",,,There will be two broad categories taken into account. Parkinson s disease without disability or light disability: Without fluctuation of the effect. Dementia in Parkinson s disease,,/root/diagnosis/neurodegenerativescategories,142
+custom_file,Parkinson Broad Category,parkinsonbroadcategory,polynominal,"{“PD”,”Dementia in Parkinson''s disease”},{”CN”,”Healthy control”},{”Other”,”Parkinson''s disease without disability or light disability: Without fluctuation of the effect”}",,,There will be two broad categories taken into account. Parkinson s disease without disability or light disability: Without fluctuation of the effect. Dementia in Parkinson s disease,,/root/diagnosis/parkinsonbroadcategory,143
+custom_file,PPMI category,ppmicategory,polynominal,"{“PD”,”Parkinson disease”},{”HC”,”Healthy controls”},{”PRODROMA”,”Prodromal”},{”GENPD”,”Genetic PD patients with a mutation (LRRK2, GBA or SNCA)”},{”REGUN”,”Genetic Unaffected patients with a mutation (LRRK2, GBA or SNCA)”},{”REGPD”,”Genetic registry PD subjects with a mutation (LRRK2, GBA, or SNCA)”},{”REGUN”,”Genetic registry unaffected subjects with a mutation (LRRK2, GBA, or SNCA)”}",,,Terms aggregating the Parkinson s diseases into classes. For this instance the diagnosis given at enrollment is taken as the clinical diagnosis. Note that the diagnosis in this categories are given only for the PPMI data set.,,/root/diagnosis/dataset_specific_diagnosis/ppmicategory,144
+custom_file,MMSE Total scores,minimentalstate,integer,0-30,,,The Mini Mental State Examination (MMSE) or Folstein test is a 30-point questionnaire that is used extensively in clinical and research settings to measure cognitive impairment. It is commonly used to screen for dementia.,,/root/neuropsychology/minimentalstate,145
+custom_file,MoCA Total,montrealcognitiveassessment,integer,0-30,,,The Montreal Cognitive Assessment (MoCA) was designed as a rapid screening instrument for mild cognitive dysfunction. It assesses different cognitive domains: attention and concentration  executive functions  memory  language  visuoconstructional skills  conceptual thinking  calculations  and orientation. MoCA Total Scores refer to the final count obtained by patients after the complete test is performed.,,/root/neuropsychology/montrealcognitiveassessment,146
+custom_file,UPDRS HY,updrshy,integer,0-5,,,The Hoehn and Yahr scale (HY) is a widely used clinical rating scale  which defines broad categories of motor function in Parkinson\u2019s disease (PD). It captures typical patterns of progressive motor impairment.,,/root/neuropsychology/updrs/updrshy,147
+custom_file,UPDRS Total,updrstotal,integer,0-172,,,The unified Parkinson s disease rating scale (UPDRS) is used to follow the longitudinal course of Parkinson s disease. The UPD rating scale is the most commonly used scale in the clinical study of Parkinson s disease.,,/root/neuropsychology/updrs/updrstotal,148
+custom_file,agegroup,agegroup,polynominal,"{“-50y”,“-50y”},{”50-59y”,”50-59y”},{”60-69y”,”60-69y”},{”70-79y”,”70-79y”},{”+80y”,”+80y”}",,,Age Group,,/root/demographics/agegroup,149
+custom_file,Gender,gender,binominal,"{“M”,”Male”},{”F”,”Female”}",,,Gender of the patient - Sex assigned at birth,,/root/demographics/gender,150
+custom_file,Handedness,handedness,polynominal,"{“R”,”Right”},{”L”,”Left”},{”A”,”Ambidextrous”}",,,Describes the tendency of the patient to use either the right or the left hand more naturally than the other.,,/root/demographics/handedness,151
+custom_file,SubjectAge,subjectage,real,0-130,months,,Exact age of the subject  for datasets that allow such precision.,,/root/demographics/subjectage,152
+custom_file,Age Years,subjectageyears,integer,0-130,years,,Subject age in years.,,/root/demographics/subjectageyears,153
+custom_file,ApoE4,apoe4,polynominal,"{0,0},{1,1},{2,2}",,,Apolipoprotein E (APOE) e4 allele: is the strongest risk factor for Late Onset Alzheimer Disease (LOAD). At least one copy of APOE-e4 ,,/root/genetic/polymorphism/apoe4,154
+custom_file,rs10498633_T,rs10498633_t,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs10498633_t,155
+custom_file,rs11136000_T,rs11136000_t,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs11136000_t,156
+custom_file,rs11767557_C,rs11767557_c,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs11767557_c,157
+custom_file,rs1476679_C,rs1476679_c,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs1476679_c,158
+custom_file,rs17125944_C,rs17125944_c,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs17125944_c,159
+custom_file,rs190982_G,rs190982_g,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs190982_g,160
+custom_file,rs2718058_G,rs2718058_g,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs2718058_g,161
+custom_file,rs3764650_G,rs3764650_g,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs3764650_g,162
+custom_file,rs3818361_T,rs3818361_t,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs3818361_t,163
+custom_file,rs3851179_A,rs3851179_a,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs3851179_a,164
+custom_file,rs3865444_T,rs3865444_t,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs3865444_t,165
+custom_file,rs610932_A,rs610932_a,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs610932_a,166
+custom_file,rs744373_C,rs744373_c,polynominal,"{0,0},{1,1},{2,2}",,,,,/root/genetic/polymorphism/rs744373_c,167
+custom_file,Dataset,dataset,text,,,,Variable used to differentiate datasets,,/root/dataset,168
+custom_file,Level of amyloid beta 1-42 peptides in cerebrospinal fluid,ab1_42,real,,,,"A\u03b2 is the main component of amyloid plaques (extracellular deposits found in the brains of patients with Alzheimer’s disease). Similar plaques appear in some variants of Lewy body dementia and in inclusion body myositis (a muscle disease), while A\u03b2 can also form the aggregates that coat cerebral blood vessels in cerebral amyloid angiopathy. The plaques are composed of a tangle of regularly ordered fibrillar aggregates called amyloid fibers, a protein fold shared by other peptides such as the prions associated with protein misfolding diseases.",,/root/proteome/csf_proteome/ab1_42,169
+custom_file,Level od amyloid beta 1-40 peptides ion cerebrospinal fluid,ab1_40,real,,,,"A\u03b2 is the main component of amyloid plaques (extracellular deposits found in the brains of patients with Alzheimer’s disease). Similar plaques appear in some variants of Lewy body dementia and in inclusion body myositis (a muscle disease), while A\u03b2 can also form the aggregates that coat cerebral blood vessels in cerebral amyloid angiopathy. The plaques are composed of a tangle of regularly ordered fibrillar aggregates called amyloid fibers, a protein fold shared by other peptides such as the prions associated with protein misfolding diseases.",,/root/proteome/csf_proteome/ab1_40,170
+custom_file,Total level of tau proteins in cerebrospinal fluid,t_tau,real,,,,"Tau proteins (or \u03c4 proteins) are proteins that stabilize microtubules. They are abundant in neurons of the central nervous system and are less common elsewhere, but are also expressed at very low levels in CNS astrocytes and oligodendrocytes. Pathologies and dementias of the nervous system such as Alzheimer’s disease and Parkinson’s disease are associated with tau proteins that have become defective and no longer stabilize microtubules properly.",,/root/proteome/csf_proteome/t_tau,171
+custom_file,Level of phosphorylated tau proteins in cerebrospinal fluid,p_tau,real,,,,"Hyperphosphorylation of the tau protein (tau inclusions, pTau) can result in the self-assembly of tangles of paired helical filaments and straight filaments, which are involved in the pathogenesis of Alzheimer’s disease, frontotemporal dementia, and other tauopathies.",,/root/proteome/csf_proteome/p_tau,172
+clm_file,DIAG:etiology:1,DIAG_etiology_1,polynominal,,,,,,/root/diagnosis/bna/DIAG_etiology_1,173
+clm_file,DIAG:etiology:2,DIAG_etiology_2,polynominal,,,,,,/root/diagnosis/bna/DIAG_etiology_2,174
+clm_file,DIAG:etiology:3,DIAG_etiology_3,polynominal,,,,,,/root/diagnosis/bna/DIAG_etiology_3,175
+clm_file,DIAG:lng,DIAG_lng,polynominal,,,,,,/root/diagnosis/bna/DIAG_lng,176
+clm_file,DIAG:lngapp,DIAG_lngapp,polynominal,,,,,,/root/diagnosis/bna/DIAG_lngapp,177
+clm_file,DIAG:stade,DIAG_stade,polynominal,,,,,,/root/diagnosis/bna/DIAG_stade,178
+clm_file,DIAG:stademin,DIAG_stademin,polynominal,,,,,,/root/diagnosis/bna/DIAG_stademin,179
+clm_file,DIAG:syndamn,DIAG_syndamn,polynominal,,,,,,/root/diagnosis/bna/DIAG_syndamn,180
+clm_file,DIAG:syndoth,DIAG_syndoth,polynominal,,,,,,/root/diagnosis/bna/DIAG_syndoth,181
+clm_file,DIAG:syndr,DIAG_syndr,polynominal,,,,,,/root/diagnosis/bna/DIAG_syndr,182

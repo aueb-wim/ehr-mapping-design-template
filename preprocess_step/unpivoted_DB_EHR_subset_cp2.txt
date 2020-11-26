@@ -1,0 +1,12 @@
+DIAG_lngapp
+MoCA_value
+DIAG_lng
+DIAG_etiology_2
+DIAG_syndoth
+DIAG_etiology_1
+DIAG_stade
+DIAG_stademin
+MMSE_value
+DIAG_etiology_3
+DIAG_syndamn
+DIAG_syndr

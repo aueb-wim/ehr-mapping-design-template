@@ -1,0 +1,15 @@
+csvFile,name,code,type,values,unit,canBeNull,description,comments,conceptPath,methodology,mapFunction,mapCDE
+DB_EHR_subset,SUBJ_AGE_YEARS_ROUND,SUBJ_AGE_YEARS_ROUND,real,,,,,,/root/demographics/SUBJ_AGE_YEARS_ROUND,,,"subjectage, subjectageyears, agegroup"
+DB_EHR_subset,SEX,SEX,binominal,,,,,,whateva,,"'Homme’ → ‘M’, ‘Femme’ → ‘F’",gender
+DB_EHR_subset,MoCA_value,MoCA_value,integer,,,,,,whateva,,as it is,montrealcognitiveassessment
+DB_EHR_subset,MMSE_value,MMSE_value,integer,,,,,,whateva,,as it is,minimentalstate
+DB_EHR_subset,DIAG:etiology:1,DIAG_etiology_1,polynominal,,,,,,whateva,,as it is,DIAG_etiology_1
+DB_EHR_subset,DIAG:etiology:2,DIAG_etiology_2,polynominal,,,,,,whateva,,as it is,DIAG_etiology_2
+DB_EHR_subset,DIAG:etiology:3,DIAG_etiology_3,polynominal,,,,,,whateva,,as it is,DIAG_etiology_3
+DB_EHR_subset,DIAG:lng,DIAG_lng,polynominal,,,,,,whateva,,as it is,DIAG_lng
+DB_EHR_subset,DIAG:lngapp,DIAG_lngapp,polynominal,,,,,,whateva,,as it is,DIAG_lngapp
+DB_EHR_subset,DIAG:stade,DIAG_stade,polynominal,,,,,,whateva,,as it is,DIAG_stade
+DB_EHR_subset,DIAG:stademin,DIAG_stademin,polynominal,,,,,,whateva,,as it is,DIAG_stademin
+DB_EHR_subset,DIAG:syndamn,DIAG_syndamn,polynominal,,,,,,whateva,,as it is,DIAG_syndamn
+DB_EHR_subset,DIAG:syndoth,DIAG_syndoth,polynominal,,,,,,whateva,,as it is,DIAG_syndoth
+DB_EHR_subset,DIAG:syndr,DIAG_syndr,polynominal,,,,,,whateva,,as it is,DIAG_syndr
