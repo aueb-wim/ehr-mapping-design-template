@@ -1,0 +1,2 @@
+class TrFunction(object):
+    pass
