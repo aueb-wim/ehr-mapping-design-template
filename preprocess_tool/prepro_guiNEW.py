@@ -18,106 +18,94 @@ class Application(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
         self.__init()
-        self.__packing()
-        self.patientcsv = None #den xreiazetai pleon
-        self.visitscsv = None #den xreiazetai pleon
+        #self.__packing()
         self.unpivotcsvs = {}
         self.selected_csv_name = None
         self.outputfolder = None
         self.cde_file = None
 
-
     def __init(self):
-        #hospital code section
-        self.hospital_label = tk.Label(self.master, text = 'Hospital Code:')
-        self.hospital_entry = tk.Entry(self.master)
-        
+        self.hospital_frame()
+        self.csv_file_frame()
+        self.cdes_metadata_frame()
+        self.output_frame()
 
-        #unpivoting section
-        self.u_labelframe = tk.LabelFrame(self.master, text='CSV Files Configuration')
-        self.u_label1 = tk.Label(self.u_labelframe, text='CSV Files')
-        self.u_label2 = tk.Label(self.u_labelframe, text='Columns')
-        self.u_label3 = tk.Label(self.u_labelframe, text='Selected ID Columns')
-        
-        self.u_subframe1 = tk.Frame(self.u_labelframe)
-        self.u_subframe2 = tk.Frame(self.u_labelframe)
-        self.u_subframe3 = tk.Frame(self.u_labelframe)
-
-        #self.u_listbox1 = tk.Listbox(self.u_subframe1, exportselection=0)
-        #self.u_listbox1.bind('<<ListboxSelect>>', self.on_select_csv)
-        self.u_listbox1 = ttk.Combobox(self.u_subframe1, width=25)        
-        #self.u_listbox2 = tk.Listbox(self.u_subframe2, exportselection=0)
-        self.u_listbox2 = ttk.Combobox(self.u_subframe2, width=25)
-        #self.u_listbox3 = tk.Listbox(self.u_subframe3, exportselection=0)
-        self.u_listbox3 = ttk.Combobox(self.u_subframe3, width=25)
-        #self.u_scrolbar1 = tk.Scrollbar(self.u_subframe1, command=self.u_listbox1.yview)
-        #self.u_scrolbar2 = tk.Scrollbar(self.u_subframe2, command=self.u_listbox2.yview)
-        #self.u_scrolbar3 = tk.Scrollbar(self.u_subframe3, command=self.u_listbox3.yview)
-
-        #self.u_listbox1.config(yscrollcommand=self.u_scrolbar1.set)
-        #self.u_listbox2.config(yscrollcommand=self.u_scrolbar2.set)
-        #self.u_listbox3.config(yscrollcommand=self.u_scrolbar3.set)
-
-        self.u_subframe4 = tk.Frame(self.u_labelframe)
-        self.u_load_btn = tk.Button(self.u_subframe4, text='Add file', command=self.load_unpivot_csv)
-        self.u_unload_btn = tk.Button(self.u_subframe4, text='Remove file', command=self.unload_unpivot_csv)
-        self.u_add_btn = tk.Button(self.u_labelframe, text='Add', command=self.add_column)
-        self.u_remove_btn = tk.Button(self.u_labelframe, text='Remove', command=self.remove_column)
-
-        # CDE metadata file
-        self.cde_labelframe = tk.LabelFrame(self.master, text='CDEs')
-        self.cde_label_file = tk.Label(self.cde_labelframe, text='Metadata file:')
-        #self.cde_code = tk.Label(self.cde_labelframe, text='Select column for Code:') #no need, the column header will be 'code'
-        self.cde_label = tk.Label(self.cde_labelframe, text='Not Selected', bg='white',  width=50)
-        self.cde_load_btn = tk.Button(self.cde_labelframe, text='Select', command=self.load_cdes)
-
-        # output path folder section
-        self.out_labelframe = tk.LabelFrame(self.master, text='Output folder')
-        self.out_label = tk.Label(self.out_labelframe, text='Not Selected', bg='white', width=50)
-        
-        self.o_button1 = tk.Button(self.out_labelframe, text='Open', command=self.select_output)
-        self.o_button2 = tk.Button(self.out_labelframe, text='Create files', command=self.createfiles)
-
-
-    def __packing(self):
+    def hospital_frame(self):
+        self.hosp_labelframe = tk.LabelFrame(self.master, text='Hospital')
+        self.hospital_label = tk.Label(self.hosp_labelframe, text='Hospital Code:')
+        self.hospital_entry = tk.Entry(self.hosp_labelframe)
+        #packing...
+        self.hosp_labelframe.grid(row=0, column=0)
         self.hospital_label.grid(row=0, column=0,sticky='w')
         self.hospital_entry.grid(row=0, column=1, columnspan=2, sticky='w')
-        
+
+    def cdes_metadata_frame(self):
+        self.cde_labelframe = tk.LabelFrame(self.master, text='CDEs')
+        self.cde_label_file = tk.Label(self.cde_labelframe, text='Metadata file:')
+        self.cde_label = tk.Label(self.cde_labelframe, text='Not Selected', bg='white',  width=50)
+        self.cde_load_btn = tk.Button(self.cde_labelframe, text='Select', command=self.load_cdes)
+        #packing...
         self.cde_labelframe.grid(row=1, column=0)
         self.cde_label_file.grid(row=0, column=0)
         self.cde_label.grid(row=0, column=1, columnspan=3, padx=4, pady=4)
         self.cde_load_btn.grid(row=0, column=5)
 
-        self.u_labelframe.grid(row=3, columnspan=4, 
+    def csv_file_frame(self):
+        self.harm_labelframe = tk.LabelFrame(self.master, text='CSV File Configuration')
+        self.harm_label_csv = tk.Label(self.harm_labelframe, text='CSV File')
+        self.harm_label_col = tk.Label(self.harm_labelframe, text='Columns')
+        self.harm_label_fun = tk.Label(self.harm_labelframe, text='Functions')
+        self.harm_label_exp = tk.Label(self.harm_labelframe, text='Expressions')
+        self.harm_label_cde = tk.Label(self.harm_labelframe, text='CDEs')
+        #
+        self.harm_subframe_csv = tk.Frame(self.harm_labelframe)
+        self.harm_subframe_col_fun = tk.Frame(self.harm_labelframe)
+        #self.harm_subframe_fun = tk.Frame(self.harm_labelframe)
+        #self.harm_subframe_exp = tk.Frame(self.harm_labelframe)
+        self.harm_subframe_cde = tk.Frame(self.harm_labelframe)
+        #
+        self.csv_file_entry = tk.Entry(self.harm_subframe_csv)
+        self.columns_cbox = ttk.Combobox(self.harm_subframe_col_fun, width=25)        
+        self.functions_cbox = ttk.Combobox(self.harm_subframe_col_fun, width=25)
+        self.expressions_text = tk.Text(self.harm_subframe_col_fun, width=35, height=3)        
+        self.harm_plusCol_btn = tk.Button(self.harm_subframe_col_fun, text='+', command=self.add_column)
+        self.harm_plusFun_btn = tk.Button(self.harm_subframe_col_fun, text='+', command=self.add_function)
+        self.cdes_cbox = ttk.Combobox(self.harm_subframe_cde, width=25)
+        #ok now start packing...
+        self.harm_labelframe.grid(row=2, columnspan=8, 
                                padx=4, pady=4, ipadx=4, ipady=4,
                                sticky=['w','e'])
-        self.u_label1.grid(row=0, column=0),
-        self.u_label2.grid(row=0, column=2)
-        self.u_label3.grid(row=0, column=4)
+        self.harm_label_csv.grid(row=0, column=0)
+        self.harm_subframe_col_fun.grid(row=3, column=0)
+        self.harm_label_col.grid(row=2, column=0)
+        self.columns_cbox.grid(row=3, column=0)
+        self.harm_plusCol_btn.grid(row=3, column=4)
+        self.harm_label_fun.grid(row=4, column=0)
+        self.functions_cbox.grid(row=5, column=0)
+        self.harm_plusFun_btn.grid(row=5, column=4)
+        self.harm_label_exp.grid(row=2, column=6)
+        self.expressions_text.grid(row=4, column=6)       
 
-        self.u_subframe1.grid(row=2, column=0, sticky='w', padx=2, pady=2)
-        self.u_listbox1.pack(side='left', fill='x')
-       # self.u_scrolbar1.pack(side='right', fill='y')
-
-        self.u_subframe2.grid(row=2, column=2, sticky='w')
-        self.u_listbox2.pack(side='left')
+        self.harm_subframe_csv.grid(row=0, column=2, sticky='w')
+      #  self.harm_label_cde.grid(row=2, column=10)
+       # self.u_scrolbar1.pack(side='right', fill='y')      
         #self.u_scrolbar2.pack(side='right', fill='y')
-
-        self.u_subframe3.grid(row=2, column=4, sticky='e')
-        self.u_listbox3.pack(side='left')
+        #self.harm_subframe_fun.grid(row=4, column=2, sticky='w') 
         #self.u_scrolbar3.pack(side='right', fill='y')
+        #self.harm_subframe_exp.grid(row=2, column=6)
+       # self.cdes_cbox.grid(row=3, column=8)
+       # self.csv_file_entry.grid(row=3, column=8)
 
-        self.u_subframe4.grid(row=3, column=0)
-        self.u_load_btn.pack(side='left')
-        self.u_unload_btn.pack(side='left')
-        self.u_add_btn.grid(row=1, column=3)
-        self.u_remove_btn.grid(row=2, column=4)
-
+    def output_frame(self):
+        self.out_labelframe = tk.LabelFrame(self.master, text='Output folder')
+        self.out_label = tk.Label(self.out_labelframe, text='Not Selected', bg='white', width=50)       
+        self.o_button1 = tk.Button(self.out_labelframe, text='Open', command=self.select_output)
+        self.o_button2 = tk.Button(self.out_labelframe, text='Create files', command=self.createfiles)
+        #packing...
         self.out_labelframe.grid(row=7, column=0)
         self.out_label.grid(row=7, column=1, pady=2)
         self.o_button1.grid(row=7, column=2)
         self.o_button2.grid(row=7, column=3, pady=2, padx=2)
-
 
     def add_items(self, headers, listbox):
         index = 1
@@ -193,7 +181,7 @@ class Application(tk.Frame):
     
     
     def add_column(self):
-        # get selected csv from previous listbox selection
+        # get selected csv from previous listbox selection <--Update: needs to change
         csv_name = self.selected_csv_name
   
         csv_item = self.unpivotcsvs[csv_name]
@@ -204,6 +192,9 @@ class Application(tk.Frame):
             csv_item = csv_item._replace(unpivoted = set(csv_item.headers) - csv_item.selected)
             self.u_listbox3.insert(tk.END, column)
             self.unpivotcsvs[csv_name]=csv_item
+
+    def add_function(self):
+        ok=True
 
     def remove_column(self):
         # get selected csv from previous listbox selection
