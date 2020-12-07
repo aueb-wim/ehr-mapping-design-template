@@ -26,8 +26,8 @@ class Application(tk.Frame):
 
     def __init(self):
         self.hospital_frame()
-        self.csv_file_frame()
         self.cdes_metadata_frame()
+        self.csv_file_frame()
         self.output_frame()
 
     def hospital_frame(self):
@@ -53,30 +53,26 @@ class Application(tk.Frame):
     def csv_file_frame(self):
         self.harm_labelframe = tk.LabelFrame(self.master, text='CSV File Configuration')
         self.harm_label_csv = tk.Label(self.harm_labelframe, text='CSV File')
-        self.harm_label_col = tk.Label(self.harm_labelframe, text='Columns')
-        self.harm_label_fun = tk.Label(self.harm_labelframe, text='Functions')
-        self.harm_label_exp = tk.Label(self.harm_labelframe, text='Expressions')
-        self.harm_label_cde = tk.Label(self.harm_labelframe, text='CDEs')
+        self.harm_map_subframe = tk.Frame(self.harm_labelframe)
+        self.harm_label_col = tk.Label(self.harm_map_subframe, text='Column')
+        self.harm_label_fun = tk.Label(self.harm_map_subframe, text='Function')
+        self.harm_label_exp = tk.Label(self.harm_map_subframe, text='Expression')
+        self.harm_label_cde = tk.Label(self.harm_map_subframe, text='CDE')
         #
-        self.harm_subframe_csv = tk.Frame(self.harm_labelframe)
-        self.harm_subframe_col_fun = tk.Frame(self.harm_labelframe)
-        #self.harm_subframe_fun = tk.Frame(self.harm_labelframe)
-        #self.harm_subframe_exp = tk.Frame(self.harm_labelframe)
-        self.harm_subframe_cde = tk.Frame(self.harm_labelframe)
-        #
-        self.csv_file_entry = tk.Entry(self.harm_subframe_csv)
-        self.columns_cbox = ttk.Combobox(self.harm_subframe_col_fun, width=25)        
-        self.functions_cbox = ttk.Combobox(self.harm_subframe_col_fun, width=25)
-        self.expressions_text = tk.Text(self.harm_subframe_col_fun, width=35, height=3)        
-        self.harm_plusCol_btn = tk.Button(self.harm_subframe_col_fun, text='+', command=self.add_column)
-        self.harm_plusFun_btn = tk.Button(self.harm_subframe_col_fun, text='+', command=self.add_function)
-        self.cdes_cbox = ttk.Combobox(self.harm_subframe_cde, width=25)
+        self.csv_file_entry = tk.Entry(self.harm_labelframe)
+        self.columns_cbox = ttk.Combobox(self.harm_map_subframe, width=25)        
+        self.functions_cbox = ttk.Combobox(self.harm_map_subframe, width=25)
+        self.expressions_text = tk.Text(self.harm_map_subframe, width=35, height=6)        
+        self.harm_plusCol_btn = tk.Button(self.harm_map_subframe, text='+', command=self.add_column)
+        self.harm_plusFun_btn = tk.Button(self.harm_map_subframe, text='+', command=self.add_function)
+        self.cdes_cbox = ttk.Combobox(self.harm_map_subframe, width=25)
         #ok now start packing...
         self.harm_labelframe.grid(row=2, columnspan=8, 
                                padx=4, pady=4, ipadx=4, ipady=4,
                                sticky=['w','e'])
         self.harm_label_csv.grid(row=0, column=0)
-        self.harm_subframe_col_fun.grid(row=3, column=0)
+        self.csv_file_entry.grid(row=1, column=0)     
+        self.harm_map_subframe.grid(row=3, column=0)
         self.harm_label_col.grid(row=2, column=0)
         self.columns_cbox.grid(row=3, column=0)
         self.harm_plusCol_btn.grid(row=3, column=4)
@@ -84,17 +80,15 @@ class Application(tk.Frame):
         self.functions_cbox.grid(row=5, column=0)
         self.harm_plusFun_btn.grid(row=5, column=4)
         self.harm_label_exp.grid(row=2, column=6)
-        self.expressions_text.grid(row=4, column=6)       
-
-        self.harm_subframe_csv.grid(row=0, column=2, sticky='w')
-      #  self.harm_label_cde.grid(row=2, column=10)
+        self.expressions_text.grid(row=3, column=6, rowspan=6)
+        self.harm_label_cde.grid(row=2, column=10)
+        self.cdes_cbox.grid(row=3, column=10)
        # self.u_scrolbar1.pack(side='right', fill='y')      
         #self.u_scrolbar2.pack(side='right', fill='y')
         #self.harm_subframe_fun.grid(row=4, column=2, sticky='w') 
         #self.u_scrolbar3.pack(side='right', fill='y')
         #self.harm_subframe_exp.grid(row=2, column=6)
-       # self.cdes_cbox.grid(row=3, column=8)
-       # self.csv_file_entry.grid(row=3, column=8)
+        
 
     def output_frame(self):
         self.out_labelframe = tk.LabelFrame(self.master, text='Output folder')
