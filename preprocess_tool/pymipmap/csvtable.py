@@ -1,4 +1,4 @@
-class CsvTable(object):
+class CsvTable(object):#XML <csv-table? element
     def __init__(self):
         csvfilename = None
         csvfilepath = None

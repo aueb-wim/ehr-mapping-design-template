@@ -1,5 +1,3 @@
-
-
 class Mapping(object):
     """Class for creating a mapping task xml for mipmap engine."""
     def __init__(self):
@@ -7,3 +5,6 @@ class Mapping(object):
         source = None
         target = None
         correspondences = []
+
+    def add_correspondence(self, new_corr)
+        self.correspondences.append(new_corr)
