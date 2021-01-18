@@ -9,6 +9,7 @@ import tkinter.messagebox as tkmessagebox
 #from tkinter import *
 #from tkinter.ttk import *
 from guiCorr import *
+from Node import *
 from prepare import produce_encounter_properties, produce_patient_properties
 from prepare import produce_unpivot_files, produce_run_sh_script
 
@@ -24,9 +25,15 @@ class Application(tk.Frame):
         self.loadTrFunctions()
         self.create_all_frames()
         #self.unpivotcsvs = {}
-        self.selected_csv_name = None
+        #self.selected_csv_name = None #I it is not needed since it is stored in csv_file_label
+        self.csv_file_path = None
+        self.csv_file_headers = []#List of the CSV headers
         self.outputfolder = None
-        self.cde_file = None
+        #self.cde_file = None #Same here.
+        self.cde_file_path = None
+        self.cdes_d = {}#Dict of CDEs: key:code->value:DcVariable
+        self.cdes_l = []#List of CDE codes: just to preserve the original sequence when they had been parsed in the JSON
+        self.rootnode = None
 
     def create_all_frames(self):
         self.hospital_frame()
@@ -35,15 +42,17 @@ class Application(tk.Frame):
         self.output_frame()
 
     def csv_file_frame(self):
-        self.harm_labelframe = tk.LabelFrame(self.master, text='CSV File Configuration')
-        self.harm_label_csv = tk.Label(self.harm_labelframe, text='CSV File')
-        self.csv_file_entry = tk.Entry(self.harm_labelframe)
+        self.harm_labelframe = tk.LabelFrame(self.master, text='Mapping Configuration')
+        self.harm_label_csv = tk.Label(self.harm_labelframe, text='CSV File:')
+        self.csv_file_label = tk.Label(self.harm_labelframe, text='Not selected', bg='white', pady=4, width=40)
+        self.csv_load_btn = tk.Button(self.harm_labelframe, text='Select', command=self.load_data_csv)
+        self.separator = ttk.Separator(self.harm_labelframe, orient=tk.HORIZONTAL)
         #packing
-        self.harm_labelframe.grid(row=2, columnspan=8, 
-                               padx=4, pady=4, ipadx=4, ipady=4,
-                               sticky=['w','e'])
+        self.harm_labelframe.grid(row=2, columnspan=8, padx=4, pady=4, ipadx=4, ipady=4, sticky=['w','e'])
         self.harm_label_csv.grid(row=0, column=0)
-        self.csv_file_entry.grid(row=1, column=0)
+        self.csv_file_label.grid(row=0, column=2)
+        self.csv_load_btn.grid(row=0, column=4)
+        self.separator.grid(row=1, columnspan=8)
         #now here comes the repeatable section with the correspondences
         for c in self.corrs:
             self.corr_line(c)
@@ -51,15 +60,17 @@ class Application(tk.Frame):
         
     def corr_line(self, c=None):
         if c is None:#all parameters in python are passed by reference
-            self.newCButton = tk.Button(self.cde_labelframe, text="New",
+            self.newCButton = tk.Button(self.harm_labelframe, text="New",
                                         command=lambda: guiCorr(self.newCButton,
                                                                 c=self.corrs, 
                                                                 i=len(self.corrs)+1,
-                                                                trFunctions=self.trFunctions))
+                                                                trFunctions=self.trFunctions,
+                                                                csv_columns=self.csv_file_headers,
+                                                                cdes_d=self.cdes_d, cdes_l=self.cdes_l))
             self.newCButton.grid(row=len(self.corrs)+1, column=5)
             return
-        self.label_corr = tk.Label(self.labelframe, text="Mapping #"+self.corrs.index(c)+"# to "+c.target)
-        self.editCButton = tk.Button(self.labelframe, text="Edit")
+        self.label_corr = tk.Label(self.harm_labelframe, text="Mapping #"+self.corrs.index(c)+"# to "+c.target)
+        self.editCButton = tk.Button(self.harm_labelframe, text="Edit")
         #packing
         self.label_corr.grid(row=i+1, column=0)
         self.editCButton.grid(row=i+1, column=5)
@@ -69,17 +80,17 @@ class Application(tk.Frame):
         self.hospital_label = tk.Label(self.hosp_labelframe, text='Hospital Code:')
         self.hospital_entry = tk.Entry(self.hosp_labelframe)
         #packing...
-        self.hosp_labelframe.grid(row=0, column=0)
+        self.hosp_labelframe.grid(row=0, columnspan=8, padx=4, pady=4, ipadx=4, ipady=4, sticky=['w','e'])
         self.hospital_label.grid(row=0, column=0,sticky='w')
         self.hospital_entry.grid(row=0, column=1, columnspan=2, sticky='w')
 
     def cdes_metadata_frame(self):
         self.cde_labelframe = tk.LabelFrame(self.master, text='CDEs')
         self.cde_label_file = tk.Label(self.cde_labelframe, text='Metadata file:')
-        self.cde_label = tk.Label(self.cde_labelframe, text='Not Selected', bg='white',  width=50)
-        self.cde_load_btn = tk.Button(self.cde_labelframe, text='Select', command=self.load_cdes)
+        self.cde_label = tk.Label(self.cde_labelframe, text='Not Selected', bg='white',  width=40)
+        self.cde_load_btn = tk.Button(self.cde_labelframe, text='Select', command=self.loadCDEs)
         #packing...
-        self.cde_labelframe.grid(row=1, column=0)
+        self.cde_labelframe.grid(row=1, columnspan=8, padx=4, pady=4, ipadx=4, ipady=4, sticky=['w','e'])
         self.cde_label_file.grid(row=0, column=0)
         self.cde_label.grid(row=0, column=1, columnspan=3, padx=4, pady=4)
         self.cde_load_btn.grid(row=0, column=5)
@@ -87,14 +98,14 @@ class Application(tk.Frame):
     
     def output_frame(self):
         self.out_labelframe = tk.LabelFrame(self.master, text='Output folder')
-        self.out_label = tk.Label(self.out_labelframe, text='Not Selected', bg='white', width=50)       
+        self.out_label = tk.Label(self.out_labelframe, text='Not Selected', bg='white', width=40)       
         self.o_button1 = tk.Button(self.out_labelframe, text='Open', command=self.select_output)
-        self.o_button2 = tk.Button(self.out_labelframe, text='Create files', command=self.createfiles)
+        #self.o_button2 = tk.Button(self.out_labelframe, text='Create files', command=self.createfiles)
         #packing...
-        self.out_labelframe.grid(row=7, column=0)
+        self.out_labelframe.grid(row=7, columnspan=8, padx=4, pady=4, ipadx=4, ipady=4, sticky=['w','e'])
         self.out_label.grid(row=7, column=1, pady=2)
         self.o_button1.grid(row=7, column=2)
-        self.o_button2.grid(row=7, column=3, pady=2, padx=2)
+        #self.o_button2.grid(row=7, column=3, pady=2, padx=2)
 
     def loadTrFunctions(self):
         #read the trFunctions.csv and load the trFunctions dict
@@ -111,7 +122,7 @@ class Application(tk.Frame):
             listbox.insert(index, header)
             index += 1
 
-    def load_patient_csv(self):
+    def load_data_csv(self):
         filepath = tkfiledialog.askopenfilename(title='select patient csv file',
                                                 filetypes=(('csv files', '*.csv'),
                                                            ('all files', '*.*')))
@@ -120,9 +131,10 @@ class Application(tk.Frame):
             self.patientcsv = csv_name
             with open(filepath, 'r') as csvfile:
                 data = csv.DictReader(csvfile)
-                self.p_csv_label2.config(text=csv_name)
-                self.p_csv_headers_cbox.config(values=data.fieldnames)
-
+                self.csv_file_label.config(text=csv_name)
+                self.csv_file_path = filepath
+                self.csv_file_headers = data.fieldnames
+                #self.p_csv_headers_cbox.config(values=data.fieldnames)
     def load_visit_csv(self):
         filepath = tkfiledialog.askopenfilename(title='select visits csv file',
                                                 filetypes=(('csv files', '*.csv'),
@@ -151,10 +163,38 @@ class Application(tk.Frame):
                 self.unpivotcsvs[csv_name] = unpivot_csv
             self.u_listbox2.delete(0, tk.END)
             self.u_listbox3.delete(0, tk.END)
+    def loadCDEs(self):
+        #Sets the filepath of the CDEs metadata file
+        filepath = tkfiledialog.askopenfilename(title='select CDEs file',
+                                                filetypes=(('json files', '*.json'),
+                                                           ('all files', '*.*')))
+        if filepath:
+            name = os.path.basename(filepath)
+            self.cde_label.config(text=name)
+            self.cde_file_path = os.path.abspath(filepath)
+            #now lets load the JSON
+            with open(self.cde_file_path) as json_file:
+                dict_schema = json.load(json_file)
+            self.rootnode = Node(dict_schema)#now rootnode has all tree hanging below it...
+            self.store_cdes_first()
+        else:
+            self.cde_file_path = None
+            self.cde_label.config(text='Not Selected')
 
-    def load_cdes(self):
-        return
-    
+    #Traverses the CDE-tree and stores the CDEs in self.cdes_d & l
+    def store_cdes_first(self):
+        self.store_cdes(current=self.rootnode)
+    def store_cdes(self, current):
+        if current:
+            variables = current.variables
+            for var in variables:
+                self.cdes_l.append(var.label)
+                self.cdes_d.update({var.label : var})#this is how u add a key-value pair to a Dictionary... Oh my...
+            groups = current.children
+            for child in groups:
+                self.store_cdes(current=child)
+        else: return
+      
     def unload_unpivot_csv(self):
         sel_index = self.u_listbox1.curselection()
         csv_name = self.u_listbox1.get(sel_index)
@@ -163,9 +203,7 @@ class Application(tk.Frame):
         self.u_listbox2.delete(0, tk.END)
         self.u_listbox3.delete(0, tk.END)
         self.selected_csv_name = None
-
-
-                    
+  
     def on_select_csv(self, event):
         sel_index = self.u_listbox1.curselection()
         csv_name = self.u_listbox1.get(sel_index)
@@ -213,7 +251,7 @@ class Application(tk.Frame):
                 os.mkdir(outputfolder)
             self.outputfolder = outputfolder
             self.o_label2.config(text=outputfolder)
-
+"""
     def createfiles(self):
         hospital_code = self.hospital_entry.get()
         warningtitle='Could not create config files'
@@ -260,7 +298,7 @@ class Application(tk.Frame):
 
         tkmessagebox.showinfo(title='Status info',
                 message='Config files have been created successully')
-
+"""
         
         
 def main(): #(Outside class Application)

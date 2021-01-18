@@ -4,24 +4,32 @@ import os
 #from tkinter.ttk import *
 from tkinter import ttk
 import tkinter as tk
+import json
 
 class guiCorr():
     """Whenever the New Button in prepro_guiNEW is pushed, a guiCorr object is created.
     :param button: The New Button in the prepro_guiNEW window
     :param c: The list of the correspondences in prepro_guiNEW
     :param i: The serial number of THIS correspondence in prepro_guiNEW
-    :param trFunctions: The dictionnary with all the transformation Functions"""
-    def __init__(self, button, c, i, trFunctions):
+    :param trFunctions: The dictionnary with all the transformation Functions
+    :param csv_columns: A list with the headers of the dataset CSV
+    :param cdes_d: 
+    :param cdes_l:"""
+    def __init__(self, button, c, i, trFunctions, csv_columns, cdes_d, cdes_l):
         self.button = button
         self.corrs = c
         self.i_cor = i
-        self.trFunctions = trFunctions
-        self.newCorr = None
+        self.trFunctions = trFunctions #Dict: key:Label->Value:Expression
+        self.csv_columns = csv_columns #List
+        self.cdes_d = cdes_d #Dict: 
+        self.cdes_l = cdes_l
+        #self.newCorr = None
         self.button.configure(state="disable")
         self.master = tk.Tk()
         self.master.geometry("750x150")
         self.master.title("Mapping #"+str(i)+"#")
         self.master.resizable(False, False)
+        self.master.protocol("WM_DELETE_WINDOW", self.on_close)
         self.corr_win()
 
     def corr_win(self):
@@ -30,13 +38,13 @@ class guiCorr():
         self.harm_label_exp = tk.Label(self.master, text='Expression')
         self.harm_label_cde = tk.Label(self.master, text='CDE')
         #
-        self.columns_cbox = ttk.Combobox(self.master, width=20)
+        self.columns_cbox = ttk.Combobox(self.master, values=self.csv_columns, width=20)
         self.functions_cbox = ttk.Combobox(self.master, values=sorted(list(self.trFunctions.keys())), width=20)
         self.expressions_text = tk.Text(self.master, width=40, height=6)
         #self.expressions_text.insert(tk.INSERT, "")#initilization
         self.harm_plusCol_btn = tk.Button(self.master, text='+', command=self.add_column)
         self.harm_plusFun_btn = tk.Button(self.master, text='+', command=self.add_function)
-        self.cdes_cbox = ttk.Combobox(self.master, width=20)
+        self.cdes_cbox = ttk.Combobox(self.master, values=self.cdes_l, width=20)
         self.harm_save_btn = tk.Button(self.master, text='Save', command=self.save)#save correrspondence
         self.harm_cancel_btn = tk.Button(self.master, text='Cancel', command=self.cancel)#cancel correspondence
         #ok now start packing...
@@ -62,7 +70,7 @@ class guiCorr():
     def add_column(self):
         temp = self.expressions_text.get(1.0, tk.END)
         self.expressions_text.delete(1.0, tk.END)
-        temp = temp + '\n' + self.columns_cbox.curselection()
+        temp = temp + self.columns_cbox.get()
         self.expressions_text.insert(tk.END, temp)
 
     def add_function(self):
@@ -73,10 +81,16 @@ class guiCorr():
         self.expressions_text.insert(tk.END, temp)
     
     def save(self):
-        self.corrs.append(self.newCorr)#self.corrs is a reference to the original prepro_guiNEW's corrs list
+        expression = expressions_text.get("1.0", END)
+        #call the MIPMAP py parser
+        self.corrs.append(Correspondence(expression=expression))#self.corrs is a reference to the original prepro_guiNEW's corrs list
         self.button.configure(state="active")
         self.master.destroy()
 
     def cancel(self):
+        self.button.configure(state="active")
+        self.master.destroy()
+
+    def on_close(self):
         self.button.configure(state="active")
         self.master.destroy()
